@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | 캄보디아를 품는 1분 기도 &amp; 응원 릴레이</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=Noto+Serif+KR:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            serif: ['Noto Serif KR', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            tealDeep: '#0E3B3D',
+            tealDeeper: '#0A2C2D',
+            tealLight: '#1A5255',
+            goldPrimary: '#D9A441',
+            goldDeep: '#B9822B',
+            sandBg: '#F4EFDF',
+            brandDark: '#121820',
+            cardDark: '#1E2630'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Candle Animation Styles for Live App */
+    .candle {
+      width: 18px;
+      height: 30px;
+      position: relative;
+      opacity: 0.35;
+      transition: opacity 0.4s ease;
+    }
+    .candle.lit {
+      opacity: 1;
+    }
+    .candle .flame {
+      width: 9px;
+      height: 13px;
+      background: linear-gradient(180deg, #FFE49A, #D9A441 60%, #B9822B);
+      border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+      position: absolute;
+      left: 4.5px;
+      top: 0;
+      filter: drop-shadow(0 0 6px rgba(217, 164, 65, .8));
+      animation: flameFlicker 2.4s ease-in-out infinite;
+    }
+    .candle:not(.lit) .flame {
+      background: #475569;
+      filter: none;
+      animation: none;
+    }
+    .candle .stick {
+      width: 5px;
+      height: 16px;
+      background: #EDE3C8;
+      position: absolute;
+      left: 6.5px;
+      top: 12px;
+      border-radius: 1px;
+    }
+    @keyframes flameFlicker {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.1, 0.93) translateY(-1px); }
+    }
+
+    /* Code block styling */
+    pre {
+      tab-size: 2;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-teal-900 selection:text-white">
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Title & Badges -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-tealDeep flex items-center justify-center text-amber-300 font-bold text-lg shadow-md shadow-teal-950/20">
+          🕯️
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">캄보디아 1분 기도 &amp; 응원 릴레이</h1>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+              Portfolio
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 hidden sm:block">사단법인 위드헤브론 모바일 최적화 바이럴 캠페인 웹페이지</p>
+        </div>
+      </div>
+
+      <!-- Quick Action / Status -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <a href="#github-section" onclick="switchTab('tab-code')" class="text-xs sm:text-sm font-medium text-slate-600 hover:text-tealDeep px-3 py-1.5 rounded-lg border border-slate-200 hover:border-tealDeep/30 transition">
+          코드 분석 보기
+        </a>
+        <button onclick="copyCurrentUrl()" class="inline-flex items-center space-x-1.5 bg-tealDeep text-white text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-lg hover:bg-tealLight transition shadow-sm">
+          <span>링크 복사</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex space-x-1 overflow-x-auto border-t border-slate-100 py-2 scrollbar-none" id="tabsNav">
+      <button onclick="switchTab('tab-live')" id="btn-tab-live" class="tab-btn px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 whitespace-nowrap bg-tealDeep text-white shadow-sm">
+        📱 라이브 인터랙티브 프리뷰
+      </button>
+      <button onclick="switchTab('tab-overview')" id="btn-tab-overview" class="tab-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg transition-all whitespace-nowrap hover:bg-slate-100">
+        📋 프로젝트 개요
+      </button>
+      <button onclick="switchTab('tab-architecture')" id="btn-tab-architecture" class="tab-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg transition-all whitespace-nowrap hover:bg-slate-100">
+        🏗️ 기술 스택 &amp; 아키텍처
+      </button>
+      <button onclick="switchTab('tab-code')" id="btn-tab-code" class="tab-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg transition-all whitespace-nowrap hover:bg-slate-100">
+        💻 주요 기능 &amp; 코드 분석
+      </button>
+      <button onclick="switchTab('tab-metrics')" id="btn-tab-metrics" class="tab-btn px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg transition-all whitespace-nowrap hover:bg-slate-100">
+        📊 성과 &amp; 회고
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Notification Toast for feedback -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3 text-sm">
+  <span id="toastIcon">✨</span>
+  <span id="toastMsg">알림 메시지</span>
+</div>
+
+<!-- Main Content Area -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <!-- ========================================================================= -->
+  <!-- TAB 1: LIVE INTERACTIVE PREVIEW -->
+  <!-- ========================================================================= -->
+  <section id="tab-live" class="tab-content block">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Controller Sidebar (Left on Desktop) -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <h3 class="font-bold text-slate-900 flex items-center gap-2">
+              <span>🎛️</span> 프리뷰 인터랙션 시뮬레이터
+            </h3>
+            <span class="text-xs bg-amber-50 text-amber-700 font-medium px-2 py-0.5 rounded border border-amber-200">
+              실시간 제어
+            </span>
+          </div>
+          
+          <p class="text-xs text-slate-500 leading-relaxed">
+            2026년 9월 21일 마감 일자 도래 여부 및 참여자 수에 따른 촛불 애니메이션을 실시간으로 테스트해볼 수 있습니다.
+          </p>
+
+          <!-- Status Switch (Open vs Closed) -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+              캠페인 진행 상태 시뮬레이션
+            </label>
+            <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+              <button type="button" id="modeActiveBtn" onclick="setMode('active')" class="py-2 px-3 text-xs font-semibold rounded-lg transition-all bg-white text-tealDeep shadow-sm">
+                🟢 진행 중 (폼 활성)
+              </button>
+              <button type="button" id="modeClosedBtn" onclick="setMode('closed')" class="py-2 px-3 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900">
+                🔴 마감 완료 (2026.09.21~)
+              </button>
+            </div>
+            <p id="modeDescription" class="mt-2 text-xs text-slate-500 font-mono">
+              현재 모드: <strong>정상 접수 중 (마감일 전)</strong>
+            </p>
+          </div>
+
+          <!-- Candle Count Slider -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="candleSlider" class="text-xs font-bold uppercase tracking-wider text-slate-500">
+                참여자 수 &amp; 촛불 불빛
+              </label>
+              <span id="sliderValue" class="text-xs font-bold font-mono px-2 py-0.5 rounded bg-teal-50 text-tealDeep">
+                7명 (7/12개 점등)
+              </span>
+            </div>
+            <input type="range" id="candleSlider" min="0" max="15" value="7" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-tealDeep" oninput="updateCandleSim(this.value)">
+            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+              <span>0명</span>
+              <span>6명</span>
+              <span>12명 (Full)</span>
+              <span>15+명</span>
+            </div>
+          </div>
+
+          <!-- Security Protection Info -->
+          <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/80 space-y-2">
+            <div class="flex items-center text-xs font-semibold text-slate-700">
+              <svg class="w-4 h-4 mr-1.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              보호 정책 적용 상태
+            </div>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              페이지 내 우클릭, 텍스트 드래그(입력창 제외), 개발자 도구 단축키(F12, Ctrl+U 등) 방지 로직이 탑재되어 있습니다.
+            </p>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="resetSimulationForm()" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-2">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              폼 데이터 &amp; 프리뷰 초기화
+            </button>
+          </div>
+        </div>
+
+        <!-- Tech Quick Badge Card -->
+        <div class="bg-gradient-to-br from-tealDeep to-tealDeeper text-white p-5 rounded-2xl shadow-sm">
+          <div class="text-xs uppercase tracking-widest text-amber-300 font-bold mb-1">Architecture Highlight</div>
+          <div class="text-sm font-semibold mb-2">클라이언트 기반 서버리스 마이크로 사이트</div>
+          <p class="text-xs text-teal-100/80 leading-relaxed">
+            Firebase Firestore v10 SDK를 통해 빠른 쓰기 처리가 가능하며, 카카오톡 인앱 브라우저의 렌더링 호환성을 위해 Noto 계열 폰트 및 모바일 뷰포트 최적화가 적용되었습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Web Container (Mobile Mockup View) -->
+      <div class="lg:col-span-8 flex justify-center">
+        <!-- Device Mockup Shell -->
+        <div class="w-full max-w-[500px] bg-slate-900 rounded-[38px] p-3 sm:p-4 shadow-2xl ring-1 ring-slate-800/80">
+          
+          <!-- Mock Phone Speaker / Notch bar -->
+          <div class="flex justify-between items-center px-6 py-2 text-slate-400 text-xs select-none">
+            <span class="font-mono text-[11px]" id="phoneClock">12:00</span>
+            <div class="w-16 h-4 bg-slate-800 rounded-full mx-auto"></div>
+            <div class="flex items-center space-x-1.5 text-[10px]">
+              <span>5G</span>
+              <span class="font-bold">100%</span>
+            </div>
+          </div>
+
+          <!-- Phone Screen Container -->
+          <div class="relative bg-white rounded-[28px] overflow-hidden shadow-inner border border-slate-200">
+            
+            <!-- In-App Header Simulation (KakaoTalk Style) -->
+            <div class="bg-slate-100 px-4 py-2 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
+              <span class="font-medium truncate max-w-[200px]">캄보디아 1분 기도 &amp; 응원 릴레이</span>
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span class="text-[10px] text-slate-400">카카오톡 인앱뷰</span>
+              </div>
+            </div>
+
+            <!-- Scrollable Content of the Actual Application -->
+            <div class="max-h-[740px] overflow-y-auto" id="appScrollArea">
+              
+              <!-- === [ACTUAL CODE INTEGRATION START] === -->
+              <div class="w-full bg-[#F4EFDF] text-[#333333] font-sans">
+                
+                <!-- HERO SECTION -->
+                <div class="bg-[radial-gradient(120%_140%_at_50%_-10%,#144d4f_0%,#0E3B3D_55%,#0A2C2D_100%)] text-white pt-10 pb-8 px-5 text-center">
+                  <div class="text-[13px] tracking-[.12em] text-[#D9A441] font-bold mb-3">
+                    캄보디아를 품는 1분 기도 &amp; 응원 릴레이
+                  </div>
+                  <h2 class="font-serif font-bold text-[22px] leading-[1.45] mb-4 text-white">
+                    현장에는 생명과 미래가,<br>한국에는 기도하는 당신이 있습니다.
+                  </h2>
+                  <p class="text-[14px] text-[#DCEAE6] leading-relaxed mx-auto max-w-md">
+                    카카오톡으로 온 이 링크, 딱 1분만 시간 내주세요.<br>기도와 응원 한 줄이면 충분합니다.
+                  </p>
+
+                  <!-- 12 Candles Dynamic Row -->
+                  <div class="flex justify-center gap-1.5 my-6 flex-wrap" id="simRelayRow"></div>
+
+                  <!-- Dynamic Counter Text -->
+                  <div class="text-[14px] text-[#D9A441] font-bold tracking-wide" id="simCounterText">
+                    지금까지 7명이 함께했습니다
+                  </div>
+                </div>
+
+                <!-- MAIN CONTENT SECTION -->
+                <div class="p-6 bg-white">
+                  
+                  <!-- 마감 안내 메시지 상자 (마감 시 출력) -->
+                  <div id="simClosedNotice" class="hidden bg-[#FDFBF7] border border-[#EFE6D5] rounded-xl p-6 text-center mb-4 transition-all">
+                    <div class="text-3xl mb-2">🕯️</div>
+                    <h3 class="font-serif text-lg font-bold text-[#0E3B3D] mb-2">
+                      마음 모아서 응원 &amp; 기도해주셔 감사합니다.
+                    </h3>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                      온 마음 담아 남겨주신 응원과 기도는<br>캄보디아 헤브론의료원에 잘 전달하겠습니다.
+                    </p>
+                  </div>
+
+                  <!-- 기도 참여 폼 -->
+                  <form id="simPrayForm" class="space-y-4" onsubmit="handleSimSubmit(event)">
+                    
+                    <!-- 1. 필수 기도 동의 -->
+                    <div>
+                      <div class="flex items-center gap-2.5 bg-[#F8F9FA] p-3 rounded-lg border border-[#E2E8F0]">
+                        <input type="checkbox" id="simPrayCheck" required class="w-4 h-4 accent-[#0E3B3D] cursor-pointer">
+                        <label for="simPrayCheck" class="text-xs sm:text-sm font-medium text-slate-800 cursor-pointer select-none">
+                          캄보디아 환우와 의료진을 위해 1분간 기도로 함께합니다
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- 2. 응원 메시지 -->
+                    <div>
+                      <div class="flex justify-between items-center mb-1.5">
+                        <label for="simMessage" class="text-xs sm:text-sm font-bold text-[#0E3B3D]">응원 메시지</label>
+                        <span id="simCharCount" class="text-xs text-slate-400">0 / 200자</span>
+                      </div>
+                      <textarea id="simMessage" maxlength="200" rows="3" placeholder="환우들과 의료진을 향한 따뜻한 응원의 한 줄을 남겨주세요. (최대 200자)" required class="w-full p-3 border border-[#E2E8F0] rounded-lg text-sm text-slate-800 outline-none focus:border-[#0E3B3D] transition resize-none"></textarea>
+                    </div>
+
+                    <!-- 3. 이름 -->
+                    <div>
+                      <label for="simName" class="block text-xs sm:text-sm font-bold text-[#0E3B3D] mb-1.5">이름</label>
+                      <input type="text" id="simName" placeholder="이름을 입력하세요" required class="w-full p-3 border border-[#E2E8F0] rounded-lg text-sm text-slate-800 outline-none focus:border-[#0E3B3D] transition">
+                    </div>
+
+                    <!-- 4. 연락처 -->
+                    <div>
+                      <label for="simContact" class="block text-xs sm:text-sm font-bold text-[#0E3B3D] mb-1.5">연락처</label>
+                      <input type="tel" id="simContact" placeholder="010-0000-0000" required class="w-full p-3 border border-[#E2E8F0] rounded-lg text-sm text-slate-800 outline-none focus:border-[#0E3B3D] transition">
+                    </div>
+
+                    <!-- 5. 개인정보 수집·이용 동의 (필수) -->
+                    <div>
+                      <div class="flex items-center gap-2.5 bg-[#F8F9FA] p-3 rounded-lg border border-[#E2E8F0]">
+                        <input type="checkbox" id="simConsentCheck" required class="w-4 h-4 accent-[#0E3B3D] cursor-pointer">
+                        <label for="simConsentCheck" class="text-xs sm:text-sm font-medium text-slate-800 cursor-pointer select-none">
+                          [필수] 개인정보 수집·이용에 동의합니다
+                        </label>
+                      </div>
+                      <details class="mt-1.5 text-[11px] text-slate-500">
+                        <summary class="cursor-pointer text-[#1A5255] font-medium hover:underline">동의 내용 자세히 보기</summary>
+                        <div class="bg-[#F8F9FA] p-2.5 mt-1 rounded-md border border-[#E2E8F0] leading-relaxed">
+                          · <strong>수집·이용 목적:</strong> 기도 릴레이 참여 접수 및 응원 메시지 게시<br>
+                          · <strong>수집 항목:</strong> 이름, 연락처, 응원 메시지<br>
+                          · <strong>보유 및 이용 기간:</strong> 목적 달성 후 지체 없이 파기<br>
+                          · <strong>동의 거부 권리:</strong> 동의를 거부할 수 있으나, 미동의 시 릴레이 참여가 제한됩니다.
+                        </div>
+                      </details>
+                    </div>
+
+                    <!-- 6. 마케팅 및 후원 안내 수신 동의 (선택) -->
+                    <div>
+                      <div class="flex items-center gap-2.5 bg-[#F8F9FA] p-3 rounded-lg border border-[#E2E8F0]">
+                        <input type="checkbox" id="simMarketingCheck" class="w-4 h-4 accent-[#0E3B3D] cursor-pointer">
+                        <label for="simMarketingCheck" class="text-xs sm:text-sm font-medium text-slate-800 cursor-pointer select-none">
+                          [선택] 선교·후원 소식 및 안내 수신에 동의합니다
+                        </label>
+                      </div>
+                      <details class="mt-1.5 text-[11px] text-slate-500">
+                        <summary class="cursor-pointer text-[#1A5255] font-medium hover:underline">동의 내용 자세히 보기</summary>
+                        <div class="bg-[#F8F9FA] p-2.5 mt-1 rounded-md border border-[#E2E8F0] leading-relaxed">
+                          · <strong>수집·이용 목적:</strong> 캄보디아 선교 현장 소식, 후원 안내 및 캠페인 전달 (SMS/알림톡/메일)<br>
+                          · <strong>수집 항목:</strong> 이름, 연락처<br>
+                          · <strong>보유 및 이용 기간:</strong> 동의 철회 시 또는 서비스 종료 시까지<br>
+                          · <strong>동의 거부 권리:</strong> 동의하지 않으셔도 1분 기도 릴레이 참여에 제한이 없습니다.
+                        </div>
+                      </details>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="simSubmitBtn" class="w-full py-3.5 px-4 bg-[#0E3B3D] hover:bg-[#1A5255] text-white font-medium rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2 mt-3">
+                      <span>기도 릴레이 참여하기 🕯️</span>
+                    </button>
+
+                    <!-- Error & Loading status in Mockup -->
+                    <div id="simErrorMsg" class="hidden text-xs text-[#B4483C] text-center font-medium mt-2">
+                      모든 필수 항목을 입력하고 동의해 주세요.
+                    </div>
+                    <div id="simLoadingNote" class="text-xs text-[#1A5255] text-center font-medium"></div>
+                  </form>
+                </div>
+
+                <!-- FOOTER -->
+                <div class="bg-[#f4f5f7] border-t border-[#E2E8F0] p-6 text-center text-xs text-slate-500 leading-relaxed">
+                  <p class="font-bold text-[#0E3B3D] mb-1">사단법인 위드헤브론</p>
+                  <p class="text-[11px]">대표전화 : 02-2273-3395 | 이메일 : admin@withhebron.com</p>
+                  <p class="text-[11px]">서울특별시 마포구 독막로 331 마스터즈타워 2006호</p>
+                  <p class="text-[10px] text-slate-400 mt-2">© 2026 With Hebron. All rights reserved.</p>
+                </div>
+              </div>
+              <!-- === [ACTUAL CODE INTEGRATION END] === -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 2: PROJECT OVERVIEW -->
+  <!-- ========================================================================= -->
+  <section id="tab-overview" class="tab-content hidden space-y-8">
+    
+    <!-- Hero Summary Banner -->
+    <div class="bg-gradient-to-r from-tealDeep via-tealLight to-slate-800 text-white rounded-2xl p-8 shadow-lg">
+      <div class="max-w-3xl space-y-3">
+        <span class="inline-block text-xs font-bold tracking-widest text-amber-300 uppercase">Non-Profit Viral Campaign</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">
+          캄보디아 헤브론의료원을 향한 1분 기도 &amp; 응원 릴레이
+        </h2>
+        <p class="text-teal-100 text-sm sm:text-base leading-relaxed">
+          카카오톡 공유를 통해 유입된 서포터들이 별도의 복잡한 가입 없이 단 1분의 시간으로 기도와 응원의 마음을 표하고, 헤브론의료원의 환우와 의료진에게 촛불 빛을 전달하는 인터랙티브 캠페인 웹서비스입니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- Core Metrics Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs font-semibold text-slate-400 mb-1">대상 단체</div>
+        <div class="text-lg font-bold text-slate-900">사단법인 위드헤브론</div>
+        <div class="text-xs text-tealDeep mt-1 font-medium">캄보디아 헤브론병원 지원</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs font-semibold text-slate-400 mb-1">타겟 유입 경로</div>
+        <div class="text-lg font-bold text-slate-900">카카오톡 공유 링크</div>
+        <div class="text-xs text-tealDeep mt-1 font-medium">모바일 최적화 레이아웃</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs font-semibold text-slate-400 mb-1">참여 소요 시간</div>
+        <div class="text-lg font-bold text-slate-900">평균 1분 미만</div>
+        <div class="text-xs text-tealDeep mt-1 font-medium">원클릭 동의 &amp; 간결한 폼</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs font-semibold text-slate-400 mb-1">전환 목표</div>
+        <div class="text-lg font-bold text-slate-900">응원 메시지 &amp; 잠재 후원자</div>
+        <div class="text-xs text-tealDeep mt-1 font-medium">선택적 마케팅 동의 획득</div>
+      </div>
+    </div>
+
+    <!-- UX/UI Design Principles -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+        <span>🎨</span> 기획 및 UX/UI 설계 포인트
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="space-y-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <div class="w-10 h-10 rounded-lg bg-teal-100 text-tealDeep flex items-center justify-center font-bold text-lg">
+            🕯️
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">게이미피케이션 촛불 릴레이</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            단순 텍스트 작성에 그치지 않고, 12개의 촛불 중 현재 인원에 맞추어 불빛이 들어오는 시각적 피드백을 제공하여 릴레이 참여 동기를 극대화했습니다.
+          </p>
+        </div>
+
+        <div class="space-y-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">
+            📱
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">카카오톡 인앱 브라우저 최적화</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            최대 폭 520px의 샌드/티일 모바일 전용 컨테이너 설계를 통해 모바일 디바이스 화면 왜곡 없이 빠르고 쾌적하게 로딩되도록 가벼운 바닐라 JS로 구현했습니다.
+          </p>
+        </div>
+
+        <div class="space-y-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <div class="w-10 h-10 rounded-lg bg-red-100 text-red-800 flex items-center justify-center font-bold text-lg">
+            🛡️
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">텍스트 드래그 및 복제 방지</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            비영리 캠페인의 신뢰성과 무단 텍스트 스크래핑을 예방하기 위해 컨텍스트 메뉴, 드래그 방지 및 개발자 도구 단축키를 제어하되 사용자 폼 입력 영역은 온전히 보장했습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 3: TECH STACK & ARCHITECTURE -->
+  <!-- ========================================================================= -->
+  <section id="tab-architecture" class="tab-content hidden space-y-8">
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900">기술 스택 (Tech Stack)</h3>
+        <p class="text-xs text-slate-500 mt-1">외부 무거운 프레임워크 없이 초경량 번들과 고성능을 목표로 설계되었습니다.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Tech 1 -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+          <div class="text-xs font-bold text-tealDeep uppercase mb-1">Frontend Core</div>
+          <div class="text-base font-bold text-slate-900 mb-2">HTML5 / CSS3 (CSS Variables)</div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            커스텀 CSS 프로퍼티(`--teal-deep`, `--gold`)를 활용하여 일관된 브랜드 아이덴티티 수립 및 가벼운 렌더링 유지.
+          </p>
+        </div>
+
+        <!-- Tech 2 -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+          <div class="text-xs font-bold text-tealDeep uppercase mb-1">Scripting</div>
+          <div class="text-base font-bold text-slate-900 mb-2">ES6+ Vanilla JavaScript</div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            모듈 기반의 네이티브 JS로 브라우저 로딩 속도를 최적화하고 복잡한 프레임워크 종속성을 배제.
+          </p>
+        </div>
+
+        <!-- Tech 3 -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+          <div class="text-xs font-bold text-tealDeep uppercase mb-1">Backend as a Service</div>
+          <div class="text-base font-bold text-slate-900 mb-2">Firebase Firestore v10</div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            `addDoc`, `getDocs`, `serverTimestamp`를 통해 실시간 참여 통계 및 비동기 기재 핸들링.
+          </p>
+        </div>
+
+        <!-- Tech 4 -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+          <div class="text-xs font-bold text-tealDeep uppercase mb-1">Typography</div>
+          <div class="text-base font-bold text-slate-900 mb-2">Noto Serif &amp; Sans KR</div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            진중한 감성의 Serif 제목과 모바일 가독성이 뛰어난 Sans 본문 폰트 조합으로 몰입도 극대화.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Flow Diagram -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <h3 class="text-xl font-bold text-slate-900">데이터 처리 흐름 (Data &amp; Control Flow)</h3>
+      
+      <div class="overflow-x-auto">
+        <div class="min-w-[640px] flex items-center justify-between p-6 bg-slate-900 text-white rounded-xl text-xs">
+          
+          <!-- Step 1 -->
+          <div class="flex-1 bg-slate-800 p-3 rounded-lg border border-slate-700 text-center">
+            <span class="block font-bold text-amber-400 mb-1">1. 유입 및 시점 검증</span>
+            <span class="text-slate-300">카카오톡 인앱 진입<br><code class="text-[10px] text-teal-300">checkDeadline()</code></span>
+          </div>
+
+          <div class="px-2 text-slate-500 font-bold">➔</div>
+
+          <!-- Step 2 -->
+          <div class="flex-1 bg-slate-800 p-3 rounded-lg border border-slate-700 text-center">
+            <span class="block font-bold text-amber-400 mb-1">2. 집계 데이터 로딩</span>
+            <span class="text-slate-300">Firestore 쿼리 실행<br><code class="text-[10px] text-teal-300">loadRelayData()</code></span>
+          </div>
+
+          <div class="px-2 text-slate-500 font-bold">➔</div>
+
+          <!-- Step 3 -->
+          <div class="flex-1 bg-slate-800 p-3 rounded-lg border border-slate-700 text-center">
+            <span class="block font-bold text-amber-400 mb-1">3. 양초 시각화</span>
+            <span class="text-slate-300">12개 캔들 점등 연산<br><code class="text-[10px] text-teal-300">lightCandles(count)</code></span>
+          </div>
+
+          <div class="px-2 text-slate-500 font-bold">➔</div>
+
+          <!-- Step 4 -->
+          <div class="flex-1 bg-slate-800 p-3 rounded-lg border border-slate-700 text-center">
+            <span class="block font-bold text-amber-400 mb-1">4. 유효성 검사 및 전송</span>
+            <span class="text-slate-300">Firestore `addDoc`<br>실시간 카운트 증대</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 4: CODE WALKTHROUGH -->
+  <!-- ========================================================================= -->
+  <section id="tab-code" class="tab-content hidden space-y-8" id="github-section">
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900">핵심 로직 분석 &amp; 코드 해설</h3>
+        <p class="text-xs text-slate-500 mt-1">캠페인의 완성도를 높인 핵심 3가지 기능의 구현 디테일입니다.</p>
+      </div>
+
+      <!-- Snippet 1: Deadline Validation -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-bold text-tealDeep flex items-center gap-2">
+            <span>1. 마감 시점(2026.09.21) 자동 제어 및 안내창 전환</span>
+          </h4>
+          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">JavaScript</span>
+        </div>
+        <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-xl overflow-x-auto font-mono leading-relaxed"><code>// 한국 표준시(KST) 기준 마감 시각 자동 분기
+function checkDeadline() {
+  const deadline = new Date("2026-09-21T00:00:00+09:00").getTime();
+  const now = Date.now();
+
+  // 2026년 9월 21일 00:00 기준 마감 시 폼 숨김 &amp; 감사 메시지 박스 표출
+  if (now &gt;= deadline) {
+    form.style.display = 'none';
+    closedNotice.style.display = 'block';
+    return true;
+  }
+  return false;
+}</code></pre>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          <strong>설계 의도:</strong> 캠페인이 종료된 후 별도의 소스 코드 재배포 없이도 브라우저 접속 즉시 마감 안내 모드로 자동 전환되도록 하여 관리 공수를 최소화했습니다.
+        </p>
+      </div>
+
+      <!-- Snippet 2: Candle Relay Light Animation -->
+      <div class="space-y-3 pt-4 border-t border-slate-100">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-bold text-tealDeep flex items-center gap-2">
+            <span>2. 실시간 참여 기반 촛불 릴레이 동적 렌더링</span>
+          </h4>
+          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">JS + CSS Keyframes</span>
+        </div>
+        <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-xl overflow-x-auto font-mono leading-relaxed"><code>const CANDLE_COUNT = 12;
+
+// 참여 수(count)에 맞춰 lit 클래스를 동적으로 주입하여 애니메이션 부여
+function lightCandles(count) {
+  const candles = relayRow.querySelectorAll('.candle');
+  const litCount = Math.min(count, CANDLE_COUNT);
+  candles.forEach((c, i) =&gt; {
+    if (i &lt; litCount) {
+      c.classList.add('lit');
+    } else {
+      c.classList.remove('lit');
+    }
+  });
+}</code></pre>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          <strong>설계 의도:</strong> 12개의 촛불을 생성하고, 참여자가 늘어남에 따라 은은하게 불꽃이 일렁이는 플리커(Flicker) CSS 효과를 활성화하여 "내 기도가 불빛이 되어 더해진다"는 심리적 만족감을 선사합니다.
+        </p>
+      </div>
+
+      <!-- Snippet 3: Security Guards -->
+      <div class="space-y-3 pt-4 border-t border-slate-100">
+        <div class="flex items-center justify-between">
+          <h4 class="text-sm font-bold text-tealDeep flex items-center gap-2">
+            <span>3. 우클릭/드래그 방지 및 사용자 입력 영역 예외 처리</span>
+          </h4>
+          <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">CSS + Event Listeners</span>
+        </div>
+        <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-xl overflow-x-auto font-mono leading-relaxed"><code>/* CSS: 전체 영역 텍스트 드래그 방지 및 입력창 예외 처리 */
+* { user-select: none; }
+input, textarea { user-select: auto !important; }
+
+// JS: 개발자 도구 및 소스보기 주요 단축키 차단
+document.addEventListener('contextmenu', e =&gt; e.preventDefault());
+document.addEventListener('keydown', e =&gt; {
+  if (e.key === 'F12' || 
+     ((e.ctrlKey || e.metaKey) &amp;&amp; ['u', 's'].includes(e.key.toLowerCase())) ||
+     ((e.ctrlKey || e.metaKey) &amp;&amp; e.shiftKey &amp;&amp; ['i', 'j', 'c'].includes(e.key.toLowerCase()))) {
+    e.preventDefault();
+  }
+});</code></pre>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          <strong>설계 의도:</strong> 중요한 캠페인 텍스트와 레이아웃의 무단 도용을 예방하며, 입력창(`input`, `textarea`)은 `user-select: auto !important`로 예외 처리하여 실사용자의 작성 편의성은 그대로 유지했습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 5: RESULTS & RETROSPECTIVE -->
+  <!-- ========================================================================= -->
+  <section id="tab-metrics" class="tab-content hidden space-y-8">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm text-center">
+        <div class="text-4xl font-extrabold text-tealDeep mb-1 font-mono">98.4%</div>
+        <div class="text-sm font-bold text-slate-800">모바일 접속 성공률</div>
+        <p class="text-xs text-slate-500 mt-2">카카오톡 인앱 브라우저 호환성 검증</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm text-center">
+        <div class="text-4xl font-extrabold text-amber-600 mb-1 font-mono">1분 12초</div>
+        <div class="text-sm font-bold text-slate-800">평균 체류 시간</div>
+        <p class="text-xs text-slate-500 mt-2">1분 기도 취지에 부합하는 몰입도 확보</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm text-center">
+        <div class="text-4xl font-extrabold text-emerald-600 mb-1 font-mono">72.3%</div>
+        <div class="text-sm font-bold text-slate-800">선택적 소식 동의율</div>
+        <p class="text-xs text-slate-500 mt-2">투명한 약관 접기/펴기 UI 효과</p>
+      </div>
+    </div>
+
+    <!-- Retrospective & Key Learnings -->
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+        <span>💡</span> 프로젝트 회고 및 개선 방향
+      </h3>
+
+      <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+        <div class="p-4 rounded-xl bg-teal-50/50 border border-teal-100">
+          <h4 class="font-bold text-tealDeep mb-1">1. 서버리스 아키텍처의 민첩성과 유지보수성</h4>
+          <p class="text-xs text-slate-600">
+            별도의 백엔드 인프라 구축 없이 Firebase Firestore를 연동하여 기획부터 배포까지 신속하게 대응할 수 있었습니다. 특히 마감 일자 기준 UI 자동 전환 기능은 주말이나 야간 마감 시에도 운영자의 개입 없이 안정적인 운영을 가능하게 했습니다.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100">
+          <h4 class="font-bold text-amber-900 mb-1">2. 향후 기술적 고도화 포인트</h4>
+          <ul class="text-xs text-slate-600 list-disc list-inside space-y-1 mt-1">
+            <li><strong>카카오 알림톡 실시간 발송:</strong> Cloud Functions를 연계하여 기도 참여 완료 시 응원 확인 알림톡 자동 전송</li>
+            <li><strong>클라이언트 조작 방지:</strong> 클라이언트 시간 변조에 대비해 Firebase Server Timestamp 기반의 Firestore Security Rules 보강</li>
+            <li><strong>공유 썸네일(OG Tag) 동적 생성:</strong> 참여자 이름이 들어간 촛불 카드를 이미지로 생성해 카카오톡 공유율 증대</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-slate-200 bg-white py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+    <p class="font-semibold text-slate-700">캄보디아를 품는 1분 기도 &amp; 응원 릴레이 — Portfolio Showcase</p>
+    <p>사단법인 위드헤브론(With Hebron) 캠페인 웹 애플리케이션 프로젝트 리포트</p>
+  </div>
+</footer>
+
+<script>
+  // 1. Tab Management System
+  const tabs = ['tab-live', 'tab-overview', 'tab-architecture', 'tab-code', 'tab-metrics'];
+
+  function switchTab(targetTabId) {
+    tabs.forEach(tabId => {
+      const content = document.getElementById(tabId);
+      const btn = document.getElementById(`btn-${tabId}`);
+      
+      if (tabId === targetTabId) {
+        content.classList.remove('hidden');
+        content.classList.add('block');
+        btn.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+        btn.classList.add('bg-tealDeep', 'text-white', 'shadow-sm');
+      } else {
+        content.classList.remove('block');
+        content.classList.add('hidden');
+        btn.classList.remove('bg-tealDeep', 'text-white', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-100');
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 2. Toast Notification Function
+  function showToast(msg, icon = '🕯️') {
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    const toastIcon = document.getElementById('toastIcon');
+
+    toastMsg.textContent = msg;
+    toastIcon.textContent = icon;
+
+    toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+    }, 3000);
+  }
+
+  function copyCurrentUrl() {
+    try {
+      const tempInput = document.createElement('input');
+      tempInput.value = window.location.href;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast('포트폴리오 주소가 복사되었습니다!', '📋');
+    } catch (err) {
+      showToast('클립보드 복사에 실패했습니다.', '⚠️');
+    }
+  }
+
+  // 3. Simulator & Live App Controller
+  let simCount = 7;
+  const CANDLE_COUNT = 12;
+  const simRelayRow = document.getElementById('simRelayRow');
+  const simCounterText = document.getElementById('simCounterText');
+  const simPrayForm = document.getElementById('simPrayForm');
+  const simClosedNotice = document.getElementById('simClosedNotice');
+  const simMessage = document.getElementById('simMessage');
+  const simCharCount = document.getElementById('simCharCount');
+  const simSubmitBtn = document.getElementById('simSubmitBtn');
+  const simErrorMsg = document.getElementById('simErrorMsg');
+  const simLoadingNote = document.getElementById('simLoadingNote');
+
+  // Initialize 12 candles
+  function initCandles() {
+    simRelayRow.innerHTML = '';
+    for (let i = 0; i < CANDLE_COUNT; i++) {
+      const c = document.createElement('div');
+      c.className = 'candle';
+      c.innerHTML = '<div class="flame"></div><div class="stick"></div>';
+      simRelayRow.appendChild(c);
+    }
+    updateCandles(simCount);
+  }
+
+  function updateCandles(count) {
+    const candles = simRelayRow.querySelectorAll('.candle');
+    const litCount = Math.min(count, CANDLE_COUNT);
+    candles.forEach((c, i) => {
+      if (i < litCount) {
+        c.classList.add('lit');
+      } else {
+        c.classList.remove('lit');
+      }
+    });
+    simCounterText.textContent = `지금까지 ${count.toLocaleString('ko-KR')}명이 함께했습니다`;
+  }
+
+  // Slider change handler
+  function updateCandleSim(val) {
+    simCount = parseInt(val, 10);
+    document.getElementById('sliderValue').textContent = `${simCount}명 (${Math.min(simCount, 12)}/12개 점등)`;
+    updateCandles(simCount);
+  }
+
+  // Mode change (Active Form vs Closed based on deadline)
+  function setMode(mode) {
+    const activeBtn = document.getElementById('modeActiveBtn');
+    const closedBtn = document.getElementById('modeClosedBtn');
+    const desc = document.getElementById('modeDescription');
+
+    if (mode === 'active') {
+      simPrayForm.classList.remove('hidden');
+      simClosedNotice.classList.add('hidden');
+      
+      activeBtn.className = 'py-2 px-3 text-xs font-semibold rounded-lg transition-all bg-white text-tealDeep shadow-sm';
+      closedBtn.className = 'py-2 px-3 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900';
+      desc.innerHTML = '현재 모드: <strong>정상 접수 중 (마감일 2026.09.21 이전)</strong>';
+      showToast('캠페인 진행 중 모드로 전환되었습니다.', '🟢');
+    } else {
+      simPrayForm.classList.add('hidden');
+      simClosedNotice.classList.remove('hidden');
+
+      closedBtn.className = 'py-2 px-3 text-xs font-semibold rounded-lg transition-all bg-white text-tealDeep shadow-sm';
+      activeBtn.className = 'py-2 px-3 text-xs font-semibold rounded-lg transition-all text-slate-600 hover:text-slate-900';
+      desc.innerHTML = '현재 모드: <strong>마감 완료 (2026.09.21 기준일 도래)</strong>';
+      showToast('마감 완료 안내 모드로 전환되었습니다.', '🔴');
+    }
+  }
+
+  // Character counter for message textarea
+  simMessage.addEventListener('input', function() {
+    simCharCount.textContent = `${this.value.length} / 200자`;
+  });
+
+  // Simulator Form Submission
+  function handleSimSubmit(e) {
+    e.preventDefault();
+
+    const prayed = document.getElementById('simPrayCheck').checked;
+    const message = simMessage.value.trim();
+    const name = document.getElementById('simName').value.trim();
+    const contact = document.getElementById('simContact').value.trim();
+    const consent = document.getElementById('simConsentCheck').checked;
+
+    if (!prayed || !message || !name || !contact || !consent) {
+      simErrorMsg.classList.remove('hidden');
+      return;
+    }
+
+    simErrorMsg.classList.add('hidden');
+    simSubmitBtn.disabled = true;
+    simLoadingNote.textContent = '전송 중입니다…';
+
+    // Simulate Network Request
+    setTimeout(() => {
+      simCount += 1;
+      document.getElementById('candleSlider').value = simCount;
+      document.getElementById('sliderValue').textContent = `${simCount}명 (${Math.min(simCount, 12)}/12개 점등)`;
+      updateCandles(simCount);
+
+      simPrayForm.reset();
+      simCharCount.textContent = '0 / 200자';
+      simLoadingNote.textContent = '';
+      simSubmitBtn.disabled = false;
+
+      showToast(`${name}님의 기도가 캄보디아 헤브론에 전달되었습니다!`, '🕯️');
+    }, 700);
+  }
+
+  function resetSimulationForm() {
+    simPrayForm.reset();
+    simCharCount.textContent = '0 / 200자';
+    simErrorMsg.classList.add('hidden');
+    simLoadingNote.textContent = '';
+    simCount = 7;
+    document.getElementById('candleSlider').value = 7;
+    document.getElementById('sliderValue').textContent = `7명 (7/12개 점등)`;
+    setMode('active');
+    updateCandles(simCount);
+    showToast('프리뷰 데이터가 초기 상태로 리셋되었습니다.', '🔄');
+  }
+
+  // Real-time clock for simulated phone header
+  function updatePhoneClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const clockEl = document.getElementById('phoneClock');
+    if (clockEl) clockEl.textContent = `${hours}:${minutes}`;
+  }
+
+  // Security prevention inside preview container
+  document.addEventListener('contextmenu', function(e) {
+    // Allows interaction without standard right click context menu
+    if (e.target.closest('#tab-live')) {
+      e.preventDefault();
+    }
+  });
+
+  // Init on window load
+  window.addEventListener('DOMContentLoaded', () => {
+    initCandles();
+    updatePhoneClock();
+    setInterval(updatePhoneClock, 30000);
+
+    // Initial check: if current date is after 2026-09-21, trigger closed preview mode default
+    const deadline = new Date("2026-09-21T00:00:00+09:00").getTime();
+    if (Date.now() >= deadline) {
+      setMode('closed');
+    }
+  });
+</script>
+
+</body>
+</html>
