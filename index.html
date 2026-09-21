@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>위드헤브론 디지털 모금 캠페인 & 후원자 리포트 포트폴리오</title>
+  <title>위드헤브론 디지털 캠페인 & 백오피스 관리 시스템 포트폴리오</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -19,20 +19,18 @@
       --text-main: #333333;
       --text-sub: #666666;
       --danger: #B4483C;
-      --surface-card: #FFFFFF;
+      --success: #2E7D32;
       --code-bg: #1E293B;
     }
 
     * {
       box-sizing: border-box;
-      /* 포트폴리오 전체 텍스트 선택 방지 */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
-    /* 폼 입력창 등 사용자 인터랙션이 필수적인 요소는 선택 허용 */
     input, textarea {
       -webkit-user-select: auto !important;
       -moz-user-select: auto !important;
@@ -51,7 +49,7 @@
       min-height: 100vh;
     }
 
-    /* 포트폴리오 네비게이션 & 헤더 */
+    /* 포트폴리오 헤더 */
     .pf-header {
       background: #0D282A;
       color: #FFFFFF;
@@ -91,7 +89,7 @@
       font-weight: 700;
     }
 
-    /* 포트폴리오 탭 컨트롤러 */
+    /* 탭 컨트롤러 */
     .pf-tab-nav {
       background: #FFFFFF;
       border-bottom: 1px solid var(--border);
@@ -112,12 +110,8 @@
       white-space: nowrap;
       transition: color 0.2s;
     }
-    .pf-tab-btn:hover {
-      color: var(--teal-deep);
-    }
-    .pf-tab-btn.active {
-      color: var(--teal-deep);
-    }
+    .pf-tab-btn:hover { color: var(--teal-deep); }
+    .pf-tab-btn.active { color: var(--teal-deep); }
     .pf-tab-btn.active::after {
       content: '';
       position: absolute;
@@ -128,7 +122,6 @@
       background: var(--teal-deep);
     }
 
-    /* 탭 본문 영역 */
     .pf-content-container {
       max-width: 1400px;
       width: 100%;
@@ -136,12 +129,8 @@
       padding: 32px;
       flex: 1;
     }
-    .pf-tab-pane {
-      display: none;
-    }
-    .pf-tab-pane.active {
-      display: block;
-    }
+    .pf-tab-pane { display: none; }
+    .pf-tab-pane.active { display: block; }
 
     /* ============================================================
        TAB 1: LIVE INTERACTIVE PREVIEW
@@ -153,9 +142,7 @@
       align-items: start;
     }
     @media (max-width: 1024px) {
-      .preview-layout {
-        grid-template-columns: 1fr;
-      }
+      .preview-layout { grid-template-columns: 1fr; }
     }
 
     .preview-controller {
@@ -172,9 +159,7 @@
       border-bottom: 2px solid #F1F5F9;
       padding-bottom: 10px;
     }
-    .ctrl-group {
-      margin-bottom: 20px;
-    }
+    .ctrl-group { margin-bottom: 20px; }
     .ctrl-label {
       font-size: 13px;
       font-weight: 700;
@@ -195,9 +180,7 @@
       font-weight: 600;
       transition: all 0.2s;
     }
-    .page-switch-btn:hover {
-      background: #EDF2F7;
-    }
+    .page-switch-btn:hover { background: #EDF2F7; }
     .page-switch-btn.active {
       background: #E6F4F1;
       border-color: var(--teal-deep);
@@ -216,13 +199,8 @@
       margin-bottom: 12px;
       font-size: 13px;
     }
-    .sim-toggle input[type="checkbox"] {
-      cursor: pointer;
-      width: 18px;
-      height: 18px;
-    }
 
-    /* 모바일 프레임 뷰어 */
+    /* 뷰어 프레임 */
     .mobile-viewer-wrap {
       display: flex;
       justify-content: center;
@@ -230,6 +208,7 @@
       padding: 40px 20px;
       border-radius: 16px;
       min-height: 860px;
+      transition: all 0.3s ease;
     }
     .mobile-frame {
       width: 100%;
@@ -241,6 +220,11 @@
       border: 8px solid #1E293B;
       display: flex;
       flex-direction: column;
+      transition: max-width 0.3s ease;
+    }
+    .mobile-frame.desktop-mode {
+      max-width: 960px;
+      border-radius: 16px;
     }
     .mobile-notch {
       background: #1E293B;
@@ -261,28 +245,12 @@
       max-height: 800px;
       background-color: var(--bg-sand);
     }
-    .mobile-viewport::-webkit-scrollbar {
-      width: 4px;
-    }
-    .mobile-viewport::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 2px;
-    }
+    .mobile-viewport::-webkit-scrollbar { width: 4px; }
+    .mobile-viewport::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
 
-    /* ============================================================
-       EMBEDDED PAGE STYLES (3종 통합 뷰 스타일)
-    ============================================================ */
-    .live-app-page {
-      display: none;
-      background: #FFFFFF;
-      min-height: 100%;
-      position: relative;
-    }
-    .live-app-page.active-page {
-      display: block;
-    }
-
-    /* 공통 헤더 및 섹션 */
+    /* 임베디드 페이지 공통 */
+    .live-app-page { display: none; background: #FFFFFF; min-height: 100%; position: relative; }
+    .live-app-page.active-page { display: block; }
     .live-app-page .header {
       background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-deeper) 100%);
       padding: 40px 20px 30px;
@@ -309,7 +277,7 @@
       word-break: keep-all;
     }
 
-    /* 1번 릴레이 페이지 전용 스타일 */
+    /* 1번 릴레이 페이지 */
     .hero-relay {
       background: radial-gradient(120% 140% at 50% -10%, #144d4f 0%, var(--teal-deep) 55%, var(--teal-deeper) 100%);
       color: #ffffff;
@@ -336,16 +304,8 @@
       margin: 24px 0 10px;
       flex-wrap: wrap;
     }
-    .candle {
-      width: 18px;
-      height: 30px;
-      position: relative;
-      opacity: .3;
-      transition: opacity .4s ease;
-    }
-    .candle.lit {
-      opacity: 1;
-    }
+    .candle { width: 18px; height: 30px; position: relative; opacity: .3; transition: opacity .4s ease; }
+    .candle.lit { opacity: 1; }
     .candle .flame {
       width: 9px;
       height: 13px;
@@ -357,40 +317,16 @@
       filter: drop-shadow(0 0 5px rgba(217, 164, 65, .8));
       animation: flicker 2.4s ease-in-out infinite;
     }
-    .candle:not(.lit) .flame {
-      background: #3a4a49;
-      filter: none;
-      animation: none;
-    }
-    .candle .stick {
-      width: 5px;
-      height: 16px;
-      background: #EDE3C8;
-      position: absolute;
-      left: 7px;
-      top: 12px;
-      border-radius: 1px;
-    }
+    .candle:not(.lit) .flame { background: #3a4a49; filter: none; animation: none; }
+    .candle .stick { width: 5px; height: 16px; background: #EDE3C8; position: absolute; left: 7px; top: 12px; border-radius: 1px; }
     @keyframes flicker {
       0%, 100% { transform: scale(1) translateY(0); }
       50% { transform: scale(1.08, 0.95) translateY(-1px); }
     }
-    .counter {
-      font-size: 14px;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .relay-content {
-      padding: 24px 20px 36px;
-    }
+    .counter { font-size: 14px; color: var(--gold); font-weight: 700; }
+    .relay-content { padding: 24px 20px 36px; }
     .field { margin-bottom: 16px; }
-    .label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 6px;
-    }
+    .label { display: block; font-size: 13px; font-weight: 700; color: var(--teal-deep); margin-bottom: 6px; }
     .input, .textarea {
       width: 100%;
       padding: 11px;
@@ -410,15 +346,6 @@
       border-radius: 8px;
       border: 1px solid var(--border);
     }
-    .consent { margin-top: 6px; font-size: 12px; color: var(--text-sub); }
-    .consent summary { cursor: pointer; color: var(--teal-light); margin-bottom: 4px; }
-    .consent .box {
-      background: #F8F9FA;
-      padding: 10px;
-      border-radius: 6px;
-      line-height: 1.5;
-      border: 1px solid var(--border);
-    }
     .submit-btn {
       width: 100%;
       padding: 14px;
@@ -430,9 +357,7 @@
       font-weight: 700;
       cursor: pointer;
       margin-top: 10px;
-      transition: background 0.2s;
     }
-    .submit-btn:hover { background: var(--teal-light); }
     .closed-notice {
       display: none;
       background: #FDFBF7;
@@ -441,20 +366,8 @@
       padding: 24px 18px;
       text-align: center;
     }
-    .closed-notice .icon { font-size: 32px; margin-bottom: 8px; }
-    .closed-notice h3 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 17px;
-      color: var(--teal-deep);
-      margin: 0 0 8px;
-    }
-    .closed-notice p {
-      font-size: 13.5px;
-      line-height: 1.55;
-      margin: 0;
-    }
 
-    /* 2번/3번 리포트 공통 카드 & 미디어 */
+    /* 2번/3번 리포트 카드 */
     .message-box {
       margin: 20px 20px 0 20px;
       padding: 18px;
@@ -462,30 +375,10 @@
       border: 1px solid var(--gold);
       border-radius: 12px;
     }
-    .message-box .greeting {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 8px;
-    }
-    .message-box p {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin: 0 0 8px 0;
-    }
-    .message-box p:last-child { margin-bottom: 0; }
-    .section-title {
-      text-align: center;
-      margin: 28px 0 14px 0;
-    }
-    .section-title h2 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 17px;
-      color: var(--teal-deep);
-      margin: 0;
-      font-weight: 700;
-    }
+    .message-box .greeting { font-size: 16px; font-weight: 700; color: var(--teal-deep); margin-bottom: 8px; }
+    .message-box p { font-size: 13.5px; line-height: 1.6; color: var(--text-main); margin: 0 0 8px 0; }
+    .section-title { text-align: center; margin: 28px 0 14px 0; }
+    .section-title h2 { font-family: 'Noto Serif KR', serif; font-size: 17px; color: var(--teal-deep); margin: 0; font-weight: 700; }
     .video-wrapper {
       margin: 0 20px 20px 20px;
       position: relative;
@@ -493,35 +386,11 @@
       height: 0;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .story-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin: 0 20px 14px 20px;
-    }
-    .story-title {
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--teal-deep);
-      margin-bottom: 8px;
-    }
-    .story-card p {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--text-sub);
-      margin: 0 0 10px 0;
-    }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .story-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin: 0 20px 14px 20px; }
+    .story-title { font-weight: 700; font-size: 15px; color: var(--teal-deep); margin-bottom: 8px; }
+    .story-card p { font-size: 13.5px; line-height: 1.6; color: var(--text-sub); margin: 0 0 10px 0; }
     .story-tag {
       display: inline-block;
       font-size: 11.5px;
@@ -533,40 +402,27 @@
       margin-right: 4px;
       margin-bottom: 4px;
     }
-    .gallery-container {
-      position: relative;
-      margin: 0 20px 20px 20px;
-    }
+    .gallery-container { position: relative; margin: 0 20px 20px 20px; }
     .gallery-track {
       display: flex;
       gap: 10px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
       padding-bottom: 6px;
     }
     .gallery-track::-webkit-scrollbar { display: none; }
-    .gallery-track { -ms-overflow-style: none; scrollbar-width: none; }
     .gallery-item {
       flex: 0 0 85%;
       scroll-snap-align: center;
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       aspect-ratio: 4 / 3;
       background-color: #E2E8F0;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      -webkit-user-drag: none;
     }
     .gallery-caption {
       position: absolute;
@@ -580,24 +436,9 @@
       padding: 16px 10px 8px 10px;
       text-align: center;
     }
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--border);
-      transition: all 0.3s ease;
-    }
-    .dot.active {
-      background-color: var(--teal-deep);
-      width: 18px;
-      border-radius: 10px;
-    }
+    .gallery-dots { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background-color: var(--border); transition: all 0.3s ease; }
+    .dot.active { background-color: var(--teal-deep); width: 18px; border-radius: 10px; }
     .banner {
       margin: 20px;
       background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-light) 100%);
@@ -606,22 +447,9 @@
       padding: 24px 18px;
       text-align: center;
     }
-    .banner h3 {
-      font-family: 'Noto Serif KR', serif;
-      margin: 0 0 6px 0;
-      font-size: 17px;
-      color: var(--gold);
-    }
-    .banner p {
-      margin: 0 0 16px 0;
-      font-size: 13px;
-      color: #E2E8F0;
-    }
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .banner h3 { font-family: 'Noto Serif KR', serif; margin: 0 0 6px 0; font-size: 17px; color: var(--gold); }
+    .banner p { margin: 0 0 16px 0; font-size: 13px; color: #E2E8F0; }
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
     .btn-primary {
       display: block;
       background-color: var(--gold);
@@ -655,7 +483,108 @@
     }
 
     /* ============================================================
-       TAB 2 ~ 5: DOCUMENTATION SECTIONS
+       [PAGE 4] 관리자 백오피스 데모 뷰 스타일
+    ============================================================ */
+    .admin-demo-wrap {
+      background: #F8F9FA;
+      padding: 24px;
+      min-height: 700px;
+    }
+    .admin-login-card {
+      max-width: 380px;
+      margin: 40px auto;
+      background: #FFFFFF;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .admin-login-card h2 {
+      color: var(--teal-deep);
+      margin: 0 0 16px 0;
+      font-size: 19px;
+    }
+    .admin-dashboard-panel {
+      display: none;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .admin-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .admin-header-row h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--teal-deep);
+    }
+    .admin-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-admin {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-admin-excel { background: #107C41; color: #FFFFFF; }
+    .btn-admin-delete { background: var(--danger); color: #FFFFFF; }
+    .admin-table-container {
+      overflow-x: auto;
+      margin-top: 14px;
+    }
+    .admin-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+    .admin-data-table th, .admin-data-table td {
+      padding: 10px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-data-table th {
+      background: #F1F5F9;
+      color: var(--teal-deep);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-stat {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .badge-stat.agree { background: #E8F5E9; color: var(--success); }
+    .badge-stat.disagree { background: #FFEBEE; color: var(--danger); }
+    .btn-del-sm {
+      background: #FFFFFF;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .btn-del-sm:hover { background: var(--danger); color: #FFFFFF; }
+
+    /* ============================================================
+       TAB 2 ~ 6: DOCUMENTATION SECTIONS
     ============================================================ */
     .doc-section {
       background: #FFFFFF;
@@ -669,9 +598,6 @@
       margin: 0 0 12px 0;
       font-size: 20px;
       color: var(--teal-deep);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .doc-section p {
       line-height: 1.7;
@@ -699,7 +625,6 @@
       font-size: 12px;
       font-weight: 700;
       color: var(--gold-deep);
-      text-transform: uppercase;
       margin-bottom: 6px;
     }
     .funnel-title {
@@ -720,7 +645,6 @@
       margin: 16px 0;
     }
 
-    /* 포트폴리오 메인 푸터 */
     .pf-main-footer {
       background: #0D282A;
       color: #94A3B8;
@@ -733,46 +657,46 @@
 </head>
 <body>
 
-  <!-- 헤더 영역 -->
+  <!-- 헤더 -->
   <header class="pf-header">
     <div class="pf-header-top">
       <div class="pf-title-area">
-        <h1>비영리 기부자 여정(Donor Journey) 모바일 캠페인 & 감사 리포트</h1>
-        <p>사단법인 위드헤브론 / 캄보디아 헤브론의료원 의료지원 모바일 참여 플랫폼</p>
+        <h1>위드헤브론 모바일 캠페인 & 백오피스 데이터 관리 시스템</h1>
+        <p>캄보디아 헤브론의료원 의료지원 캠페인 프론트엔드 및 관리자 콘솔 종합 포트폴리오</p>
       </div>
       <div class="pf-badge-group">
         <span class="pf-badge">Vanilla JS</span>
         <span class="pf-badge">Firebase Firestore v10</span>
-        <span class="pf-badge">CSS Scroll-Snap</span>
-        <span class="pf-badge">Right-Click Protected</span>
+        <span class="pf-badge">Backoffice & CSV Export</span>
+        <span class="pf-badge">Security & Right-Click Protected</span>
       </div>
     </div>
   </header>
 
-  <!-- 상단 네비게이션 탭 -->
+  <!-- 메인 탭 네비게이션 -->
   <nav class="pf-tab-nav">
-    <button class="pf-tab-btn active" onclick="switchPfTab(0)">📱 실시간 뷰어 (Live App)</button>
+    <button class="pf-tab-btn active" onclick="switchPfTab(0)">📱 실시간 뷰어 (Live Simulator)</button>
     <button class="pf-tab-btn" onclick="switchPfTab(1)">🧭 기부자 CRM 여정 설계</button>
-    <button class="pf-tab-btn" onclick="switchPfTab(2)">⚙️ 기술 아키텍처 & 보안</button>
-    <button class="pf-tab-btn" onclick="switchPfTab(3)">💻 핵심 코드 분석</button>
-    <button class="pf-tab-btn" onclick="switchPfTab(4)">📊 성과 및 향후 고도화</button>
+    <button class="pf-tab-btn" onclick="switchPfTab(2)">🛠️ 백오피스 & 데이터 거버넌스</button>
+    <button class="pf-tab-btn" onclick="switchPfTab(3)">⚙️ 보안 및 아키텍처</button>
+    <button class="pf-tab-btn" onclick="switchPfTab(4)">💻 핵심 코드 분석</button>
   </nav>
 
-  <!-- 탭 본문 컨테이너 -->
+  <!-- 포트폴리오 메인 컨테이너 -->
   <main class="pf-content-container">
 
     <!-- ============================================================
-         TAB 1: LIVE INTERACTIVE PREVIEW
+         TAB 0: LIVE INTERACTIVE SIMULATOR (4개 페이지 포함)
     ============================================================ -->
     <div class="pf-tab-pane active" id="tabPane0">
       <div class="preview-layout">
         
-        <!-- 왼쪽: 뷰어 제어 패널 -->
+        <!-- 왼쪽: 제어 컨트롤러 -->
         <aside class="preview-controller">
           <h3>🎮 시뮬레이터 제어 패널</h3>
           
           <div class="ctrl-group">
-            <span class="ctrl-label">화면 전환 (3-Step Pages)</span>
+            <span class="ctrl-label">화면 전환 (모바일 3종 + 관리자 1종)</span>
             <button class="page-switch-btn active" onclick="switchLivePage('page1')">
               1. 1분 기도 & 응원 릴레이 (참여 폼)
             </button>
@@ -780,7 +704,10 @@
               2. 감사 리포트 (후원 피드백 & 갤러리)
             </button>
             <button class="page-switch-btn" onclick="switchLivePage('page3')">
-              3. 현장 소식 리포트 (연차보고서 & NGO소개)
+              3. 현장 소식 리포트 (연차보고서 & NGO안내)
+            </button>
+            <button class="page-switch-btn" onclick="switchLivePage('page4')">
+              4. 관리자 콘솔 (인라인 인증 & 내역 관리)
             </button>
           </div>
 
@@ -800,16 +727,17 @@
           </div>
 
           <div style="background:#F1F5F9; padding:12px; border-radius:8px; font-size:12px; line-height:1.5; color:#475569;">
-            🛡️ <strong>보안 정책 적용됨</strong><br>
-            이 포트폴리오 페이지 전체에서 <strong>우클릭 방지, 텍스트 드래그 금지, 개발자도구 단축키(F12, Ctrl+U 등) 차단</strong>이 활성화되어 있습니다.
+            🛡️ <strong>보안 및 권한 테스트 힌트</strong><br>
+            - 관리자 콘솔 데모 비밀번호: <code>Farah2015*</code><br>
+            - 페이지 전체 우클릭, 드래그 방지, 단축키 차단 적용 중
           </div>
         </aside>
 
-        <!-- 오른쪽: 모바일 뷰어 프레임 -->
+        <!-- 오른쪽: 모바일/데스크톱 뷰어 프레임 -->
         <div class="mobile-viewer-wrap">
-          <div class="mobile-frame">
+          <div class="mobile-frame" id="mainViewerFrame">
             <div class="mobile-notch"><div class="mobile-notch-bar"></div></div>
-            <div class="mobile-viewport">
+            <div class="mobile-viewport" id="mainViewPort">
 
               <!-- [PAGE 1] 1분 기도 & 응원 릴레이 -->
               <section class="live-app-page active-page" id="livePage1">
@@ -817,20 +745,17 @@
                   <div class="eyebrow">캄보디아를 품는 1분 기도 &amp; 응원 릴레이</div>
                   <h1>현장에는 생명과 미래가,<br>한국에는 기도하는 당신이 있습니다.</h1>
                   <p>카카오톡으로 온 이 링크, 딱 1분만 시간 내주세요.<br>기도와 응원 한 줄이면 충분합니다.</p>
-                  
                   <div class="relay-row" id="relayCandlesContainer"></div>
                   <div class="counter" id="simCounterText">지금까지 8명이 함께했습니다</div>
                 </div>
 
                 <div class="relay-content">
-                  <!-- 마감 박스 -->
                   <div id="simClosedBox" class="closed-notice">
                     <div class="icon">🕯️</div>
                     <h3>마음 모아서 응원 &amp; 기도해주셔 감사합니다.</h3>
                     <p>온 마음 담아 남겨주신 응원과 기도는<br>캄보디아 헤브론의료원에 잘 전달하겠습니다.</p>
                   </div>
 
-                  <!-- 폼 영역 -->
                   <form id="simPrayForm" onsubmit="handleSimSubmit(event)">
                     <div class="field">
                       <div class="check-row">
@@ -883,7 +808,6 @@
 
                 <div class="footer">
                   <p><strong>사단법인 위드헤브론</strong></p>
-                  <p>대표전화 : 02-2273-3395 | 이메일 : admin@withhebron.com</p>
                   <p>© 2026 With Hebron. All rights reserved.</p>
                 </div>
               </section>
@@ -901,16 +825,11 @@
                   <p>보내주신 사랑으로 다시 일어선 캄보디아 환아와 현지 의료진이 후원자님께 전해온 진심 어린 감사의 마음을 나눕니다.</p>
                 </div>
 
-                <div class="section-title">
-                  <h2>🎬 현장 영상 보기</h2>
-                </div>
+                <div class="section-title"><h2>🎬 현장 영상 보기</h2></div>
                 <div class="video-wrapper">
                   <iframe src="https://www.youtube.com/embed/-JAbdhJUvGA" title="YouTube video player" allowfullscreen></iframe>
                 </div>
 
-                <div class="section-title">
-                  <h2>캄보디아 현장의 감사 소식 👇</h2>
-                </div>
                 <div class="story-card">
                   <div class="story-title">💌 아픔 대신 피어난 아이의 미소</div>
                   <p>보내주신 기도 덕분에 이제 아프지 않고 친구들과 마음껏 달릴 수 있게 되었어요. 제게 소중한 내일을 선물해 주셔서 감사합니다!</p>
@@ -918,16 +837,7 @@
                   <span class="story-tag">#희망의선물</span>
                 </div>
 
-                <div class="story-card">
-                  <div class="story-title">🩺 사람을 살리는 꿈을 품은 청년</div>
-                  <p>후원자님의 사랑 덕분에 이곳에서 사람을 살리는 꿈을 키워가고 있습니다. 캄보디아의 이웃들을 깊이 사랑하고 치료하는 신실한 의료진이 되겠습니다.</p>
-                  <span class="story-tag">#의료진의다짐</span>
-                  <span class="story-tag">#따뜻한동역</span>
-                </div>
-
-                <div class="section-title">
-                  <h2>📸 현장 사진</h2>
-                </div>
+                <div class="section-title"><h2>📸 현장 사진</h2></div>
                 <div class="gallery-container">
                   <div class="gallery-track" id="galleryTrack2">
                     <div class="gallery-item">
@@ -938,14 +848,9 @@
                       <div style="text-align:center; padding:20px; color:#64748B;">[02. 모바일 진료 현장]</div>
                       <div class="gallery-caption">찾아가는 이동진료 현장 버스</div>
                     </div>
-                    <div class="gallery-item">
-                      <div style="text-align:center; padding:20px; color:#64748B;">[03. 환아 진료 상담]</div>
-                      <div class="gallery-caption">소아 환우 청진 및 진료</div>
-                    </div>
                   </div>
                   <div class="gallery-dots" id="dotsContainer2">
                     <span class="dot active"></span>
-                    <span class="dot"></span>
                     <span class="dot"></span>
                   </div>
                 </div>
@@ -971,24 +876,14 @@
 
                 <div class="message-box">
                   <div class="greeting">안녕하세요 후원자님 🏥</div>
-                  <p>후원자님께서 보내주시는 따뜻한 관심 덕분에, 캄보디아 헤브론병원의 환우들과 의료진이 큰 위로와 소망을 얻고 있습니다. 💖</p>
-                  <p>사랑의 동역을 통해 다시 일어선 캄보디아 환아와 현지 의료진이 전해온 진심 어린 감사의 이야기를 전해드립니다.</p>
-                </div>
-
-                <div class="section-title">
-                  <h2>🎬 현장 영상 보기</h2>
-                </div>
-                <div class="video-wrapper">
-                  <iframe src="https://www.youtube.com/embed/-JAbdhJUvGA" title="YouTube video player" allowfullscreen></iframe>
+                  <p>후원자님께서 보내주시는 따뜻한 관심 덕분에, 캄보디아 헤브론병원의 환우들과 의료진이 큰 위로와 소망을 얻고 있습니다.</p>
                 </div>
 
                 <div class="story-card">
                   <div class="story-title">🏥 사단법인 위드헤브론은?</div>
-                  <p>위드헤브론은 소외계층 환자 치료, 장학, 지역보건 사업을 수행하는 국제개발협력 NGO입니다.</p>
-                  <p>아프지 않은 캄보디아를 위해 헤브론의료원을 지원합니다.</p>
+                  <p>소외계층 환자 치료, 장학, 지역보건 사업을 수행하는 국제개발협력 NGO입니다.</p>
                   <span class="story-tag">#의료선교</span>
                   <span class="story-tag">#보건의료지원</span>
-                  <span class="story-tag">#WITHHEBRON</span>
                 </div>
 
                 <div class="banner">
@@ -1006,6 +901,58 @@
                 </div>
               </section>
 
+              <!-- [PAGE 4] 관리자 콘솔 (인라인 인증 & 내역 관리) -->
+              <section class="live-app-page" id="livePage4">
+                <div class="admin-demo-wrap">
+                  
+                  <!-- 인라인 로그인 박스 -->
+                  <div class="admin-login-card" id="demoAdminLogin">
+                    <h2>관리자 로그인</h2>
+                    <p style="font-size:13px; color:#666; margin-bottom:16px;">기도 릴레이 접수 현황 조회</p>
+                    <input type="password" id="demoAdminPw" class="input" placeholder="비밀번호 입력 (Farah2015*)" style="margin-bottom:10px;">
+                    <button class="submit-btn" style="margin-top:0;" onclick="handleDemoAdminLogin()">접속하기</button>
+                    <div id="demoAdminErr" style="color:var(--danger); font-size:12px; margin-top:10px; display:none;">비밀번호가 올바르지 않습니다.</div>
+                  </div>
+
+                  <!-- 관리 대시보드 패널 -->
+                  <div class="admin-dashboard-panel" id="demoAdminDashboard">
+                    <div class="admin-header-row">
+                      <div>
+                        <h2>캄보디아 기도 릴레이 신청 현황</h2>
+                        <div style="font-size:13px; color:#64748B; margin-top:4px;">
+                          총 <strong id="adminTotalCount" style="color:var(--teal-deep);">4</strong>건의 접수 내역
+                        </div>
+                      </div>
+                      <div class="admin-actions">
+                        <button class="btn-admin btn-admin-excel" onclick="exportDemoCSV()">📊 엑셀 다운로드</button>
+                        <button class="btn-admin btn-admin-delete" onclick="deleteDemoAll()">🚨 전체 일괄 파기</button>
+                      </div>
+                    </div>
+
+                    <div class="admin-table-container">
+                      <table class="admin-data-table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>이름</th>
+                            <th>연락처</th>
+                            <th>응원 메시지</th>
+                            <th>개인정보동의</th>
+                            <th>마케팅동의</th>
+                            <th>신청 일시</th>
+                            <th>관리</th>
+                          </tr>
+                        </thead>
+                        <tbody id="demoAdminTableBody">
+                          <!-- JS 동적 렌더링 -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
             </div>
           </div>
         </div>
@@ -1014,53 +961,75 @@
     </div>
 
     <!-- ============================================================
-         TAB 2: DONOR JOURNEY CRM ARCHITECTURE
+         TAB 1: DONOR JOURNEY
     ============================================================ -->
     <div class="pf-tab-pane" id="tabPane1">
       <div class="doc-section">
         <h2>🧭 비영리 기부자 획득 및 육성 퍼널 (Donor Funnel)</h2>
-        <p>단순한 후원 유치 폼의 한계를 극복하기 위해, 감정적 공감에서 시작하여 신뢰 검증 및 최종 후원 전환으로 이어지는 3단계 CRM 라이프사이클을 설계했습니다.</p>
-        
+        <p>1회성 방문자를 정기 후원자로 단계적 전환시키는 3-Phase CRM 퍼널 구조입니다.</p>
         <div class="funnel-grid">
           <div class="funnel-card">
-            <div class="funnel-step">Step 01. 잠재 후원자 획득</div>
-            <div class="funnel-title">1분 기도 & 응원 릴레이</div>
-            <p><strong>목표:</strong> 심리적 진입 장벽 제거 및 자발적 모바일 참여 유도</p>
-            <p><strong>핵심 장치:</strong> 비용 부담 없는 '1분 기도' 액션, 실시간 촛불 카운터 게이미피케이션, 필수 수집 항목의 최소화(이름, 연락처).</p>
+            <div class="funnel-step">Phase 01. 참여 유도</div>
+            <div class="funnel-title">1분 기도 릴레이</div>
+            <p><strong>전환 장치:</strong> 비용 없는 1분 행동 약속, 인터랙티브 촛불 카운터, 참여 장벽 최소화.</p>
           </div>
-
           <div class="funnel-card">
-            <div class="funnel-step">Step 02. 투명성 피드백 & 신뢰 형성</div>
-            <div class="funnel-title">위드헤브론 감사 리포트</div>
-            <p><strong>목표:</strong> 참여 결과 피드백을 통한 효능감 증대</p>
-            <p><strong>핵심 장치:</strong> 카카오 알림톡을 통한 1:1 감사 메시지 도달, 현지 의료진/환아의 감사 영상 및 터치 슬라이드 갤러리 제공.</p>
+            <div class="funnel-step">Phase 02. 결과 피드백</div>
+            <div class="funnel-title">감사 리포트</div>
+            <p><strong>전환 장치:</strong> 카카오톡 1:1 메시지 발송, 현지 의료진 감사 영상, 터치 스와이프 사진 제공.</p>
           </div>
-
           <div class="funnel-card">
-            <div class="funnel-step">Step 03. 정기 후원자 전환</div>
-            <div class="funnel-title">현장 소식 & 기관 검증 리포트</div>
-            <p><strong>목표:</strong> 일회성 참여자의 정기 동역자(정기기부자) 전환</p>
-            <p><strong>핵심 장치:</strong> 2025 연차보고서 투명 공개, 지속가능한 보건의료 프로젝트 안내, MRM 간편 후원 결제창 연동.</p>
+            <div class="funnel-step">Phase 03. 신뢰 및 후원</div>
+            <div class="funnel-title">현장 소식 & 정기 후원</div>
+            <p><strong>전환 장치:</strong> 2025 연차보고서 투명 공개, 국제 NGO 공신력 입증, 온라인 정기 후원창 연계.</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ============================================================
-         TAB 3: TECH ARCHITECTURE & SECURITY
+         TAB 2: BACKOFFICE & DATA GOVERNANCE
     ============================================================ -->
     <div class="pf-tab-pane" id="tabPane2">
       <div class="doc-section">
-        <h2>⚙️ 프론트엔드 보안 정책 및 시스템 구조</h2>
-        <p>외부 무단 크롤링, 폼 자동 입력 봇, 모바일 인앱 브라우저 내 텍스트 오선택을 방지하기 위해 정교한 클라이언트 보안 레이어를 구축했습니다.</p>
+        <h2>🛠️ 관리자 백오피스 & 개인정보 데이터 거버넌스</h2>
+        <p>기부자 데이터의 안전한 관리, CSV 내보내기를 통한 현업 연계, 개인정보보호법에 준거한 파기 절차를 구축했습니다.</p>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:20px;">
+          <div style="background:#F8FAFC; border:1px solid var(--border); padding:20px; border-radius:10px;">
+            <h3 style="margin-top:0; color:var(--teal-deep); font-size:16px;">📋 데이터 파이프라인 및 백오피스 기능</h3>
+            <ul style="padding-left:20px; line-height:1.8; font-size:13.5px; color:#475569;">
+              <li><strong>인라인 단일 관리자 인증:</strong> 별도 계정 등록 없이 비밀키 기반의 직관적 관리자 로그인 지원</li>
+              <li><strong>실시간 Firestore 데이터 조회:</strong> 서버리스 NoSQL 데이터베이스로부터 최신 등록순 역정렬 렌더링</li>
+              <li><strong>CSV/엑셀 내보내기:</strong> UTF-8 BOM(`\uFEFF`) 인코딩 처리를 통해 엑셀 한글 깨짐 원천 방지</li>
+              <li><strong>단건 삭제 및 일괄 파기:</strong> 실수로 인한 데이터 손실을 방지하는 2단계 확인 절차(문구 입력 확인)</li>
+            </ul>
+          </div>
 
-        <div style="background:#F8FAFC; border:1px solid var(--border); padding:20px; border-radius:10px; margin-top:16px;">
-          <h4 style="margin:0 0 10px 0; color:var(--teal-deep);">🔒 적용된 브라우저 보안 제어 매트릭스</h4>
+          <div style="background:#F8FAFC; border:1px solid var(--border); padding:20px; border-radius:10px;">
+            <h3 style="margin-top:0; color:var(--teal-deep); font-size:16px;">⚖️ 컴플라이언스 및 개인정보 보호</h3>
+            <ul style="padding-left:20px; line-height:1.8; font-size:13.5px; color:#475569;">
+              <li><strong>선택/필수 동의 분리:</strong> 개인정보 수집 동의(필수)와 선교·후원 마케팅 안내(선택) 엄격 구분</li>
+              <li><strong>보유 기간 경과 시 파기 로직:</strong> 목적 달성 후 지체 없는 파기를 위한 '일괄 파기' API 탑재</li>
+              <li><strong>XSS 방어 데이터 이스케이프:</strong> 악의적인 스크립트 태그 입력 방지를 위한 `escapeHtml` 헬퍼 적용</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 3: SECURITY & ARCHITECTURE
+    ============================================================ -->
+    <div class="pf-tab-pane" id="tabPane3">
+      <div class="doc-section">
+        <h2>⚙️ 시스템 보안 및 브라우저 제어 매트릭스</h2>
+        <p>모바일 인앱 브라우저 및 웹 데스크톱 환경에서 발생하는 무단 복제 및 불법 조작을 차단합니다.</p>
+        <div style="background:#F8FAFC; border:1px solid var(--border); padding:20px; border-radius:10px;">
           <ul style="margin:0; padding-left:20px; line-height:1.8; color:#475569; font-size:14px;">
-            <li><strong>우클릭 차단 (Context Menu Blocking):</strong> `oncontextmenu="return false;"` 및 이벤트 리스너를 통한 우클릭 무력화</li>
-            <li><strong>텍스트 드래그/선택 차단 (Select/Drag Blocking):</strong> CSS `user-select: none;` 적용 및 폼 입력 필드(`input`, `textarea`)에 대한 선택 복원 예외 처리</li>
-            <li><strong>개발자 도구 단축키 무력화:</strong> `F12`, `Ctrl+U`(소스보기), `Ctrl+Shift+I/J/C`(검사 도구), `Ctrl+S`(페이지 저장) 키 이벤트 원천 차단</li>
-            <li><strong>서버리스 Firestore 통신:</strong> Google Firebase v10 모듈러 SDK를 통한 안전한 비동기 데이터 적재</li>
+            <li><strong>우클릭 원천 차단:</strong> `contextmenu` 이벤트를 가로채어 우클릭 메뉴 비활성화</li>
+            <li><strong>텍스트 드래그 차단 & 폼 예외:</strong> 전체 드래그를 금지하되 폼 입력 필드는 상호작용 유지</li>
+            <li><strong>개발자 도구 단축키 방지:</strong> `F12`, `Ctrl+U`, `Ctrl+Shift+I/J/C`, `Ctrl+S` 차단</li>
           </ul>
         </div>
       </div>
@@ -1069,148 +1038,83 @@
     <!-- ============================================================
          TAB 4: CODE WALKTHROUGH
     ============================================================ -->
-    <div class="pf-tab-pane" id="tabPane3">
+    <div class="pf-tab-pane" id="tabPane4">
       <div class="doc-section">
         <h2>💻 주요 스크립트 로직 분석</h2>
         
-        <p><strong>1. 우클릭 및 단축키 차단 스크립트 (보안 모듈)</strong></p>
+        <p><strong>1. 한글 깨짐 방지 CSV 내보내기 스크립트</strong></p>
         <div class="code-block">
-// 우클릭, 드래그 및 개발자 단축키 차단
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('dragstart', e => e.preventDefault());
-document.addEventListener('selectstart', e => {
-  // 사용자가 입력 필드(input, textarea)를 드래그하는 경우는 허용
-  if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return true;
-  e.preventDefault();
-});
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'F12') e.preventDefault();
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') e.preventDefault();
-  if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) e.preventDefault();
-});
-        </div>
-
-        <p><strong>2. 스와이프 갤러리 인디케이터 동기화 로직</strong></p>
-        <div class="code-block">
-// CSS Scroll-Snap과 연동되는 실시간 도트 인디케이터
-track.addEventListener('scroll', () => {
-  const itemWidth = track.firstElementChild.getBoundingClientRect().width + 12;
-  const activeIndex = Math.round(track.scrollLeft / itemWidth);
-
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === activeIndex);
+// UTF-8 BOM 인코딩을 적용한 CSV 다운로드
+const exportCSV = (dataList) => {
+  let csv = "\uFEFF이름,연락처,응원메시지,개인정보동의,마케팅동의,신청일시\n";
+  dataList.forEach(item => {
+    const dateStr = item.createdAt?.toDate ? item.createdAt.toDate().toLocaleString('ko-KR') : '-';
+    csv += `"${item.name}","${item.contact}","${item.message}","${item.consent?'동의':'미동의'}","${item.marketingConsent?'동의':'미동의'}","${dateStr}"\n`;
   });
-});
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `기도릴레이_접수명단_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+};
         </div>
-      </div>
-    </div>
 
-    <!-- ============================================================
-         TAB 5: METRICS & RETROSPECTIVE
-    ============================================================ -->
-    <div class="pf-tab-pane" id="tabPane4">
-      <div class="doc-section">
-        <h2>📊 프로젝트 성과 지표 및 운영 회고</h2>
-        <p>모바일 카카오톡 인앱 브라우저 환경에서 발생할 수 있는 렌더링 지연과 키보드 가림 문제를 사전에 차단하고 높은 전환율을 유지하도록 최적화되었습니다.</p>
-
-        <div class="funnel-grid" style="margin-top:20px;">
-          <div style="background:#FFFFFF; border:1px solid var(--border); padding:16px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:900; color:var(--teal-deep);">0.4s</div>
-            <div style="font-size:13px; color:var(--text-sub); margin-top:4px;">경량 바닐라 JS 기반 FCP (First Contentful Paint)</div>
-          </div>
-          <div style="background:#FFFFFF; border:1px solid var(--border); padding:16px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:900; color:var(--gold-deep);">100%</div>
-            <div style="font-size:13px; color:var(--text-sub); margin-top:4px;">카카오톡 인앱 브라우저 뷰포트 호환성</div>
-          </div>
-          <div style="background:#FFFFFF; border:1px solid var(--border); padding:16px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:900; color:var(--teal-light);">3-Tier</div>
-            <div style="font-size:13px; color:var(--text-sub); margin-top:4px;">참여 → 피드백 → 후원 전환의 연속적 유입 구조</div>
-          </div>
+        <p><strong>2. XSS 방어 문자열 이스케이프 헬퍼</strong></p>
+        <div class="code-block">
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/&lt;/g, "&lt;")
+    .replace(/&gt;/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- 포트폴리오 푸터 -->
   <footer class="pf-main-footer">
     <p>포트폴리오 제작: 원은빛 (Won Eun-bit) | IT Project Manager & Product Owner</p>
-    <p style="font-size:11px; margin-top:4px;">사단법인 위드헤브론 및 캄보디아 헤브론의료원 캠페인 웹 프로젝트 아카이브</p>
+    <p style="font-size:11px; margin-top:4px;">사단법인 위드헤브론 및 캄보디아 헤브론의료원 디지털 프로젝트</p>
   </footer>
 
-  <!-- ============================================================
-     보안 스크립트: 우클릭 차단 / 드래그 차단 / 단축키 차단
-  ============================================================ -->
+  <!-- 보안 스크립트: 우클릭 차단 / 드래그 차단 / 단축키 차단 -->
   <script>
-    // 1. 우클릭 방지
-    document.addEventListener('contextmenu', function(e) {
+    document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+    document.addEventListener('dragstart', e => { e.preventDefault(); return false; });
+    document.addEventListener('selectstart', e => {
+      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return true;
       e.preventDefault();
       return false;
     });
-
-    // 2. 드래그 방지
-    document.addEventListener('dragstart', function(e) {
-      e.preventDefault();
-      return false;
-    });
-
-    // 3. 텍스트 선택 방지 (단, 폼 입력 필드는 허용)
-    document.addEventListener('selectstart', function(e) {
-      const tag = e.target.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA') {
-        return true;
-      }
-      e.preventDefault();
-      return false;
-    });
-
-    // 4. 개발자 도구 및 소스 보기 단축키 방지
-    document.addEventListener('keydown', function(e) {
-      // F12 개발자 도구 차단
-      if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+U / Cmd+U (소스 보기 방지)
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+Shift+I / J / C (개발자 도구 검사창 방지)
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+S / Cmd+S (페이지 저장 방지)
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-        e.preventDefault();
-        return false;
-      }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'F12') { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); return false; }
     });
   </script>
 
-  <!-- ============================================================
-     포트폴리오 탭 & 뷰어 인터랙션 제어 스크립트
-  ============================================================ -->
+  <!-- 포트폴리오 탭 & 뷰어 제어 스크립트 -->
   <script>
-    // 포트폴리오 메인 탭 전환
     function switchPfTab(tabIndex) {
       const btns = document.querySelectorAll('.pf-tab-btn');
       const panes = document.querySelectorAll('.pf-tab-pane');
-
       btns.forEach((b, i) => b.classList.toggle('active', i === tabIndex));
       panes.forEach((p, i) => p.classList.toggle('active', i === tabIndex));
     }
 
-    // 모바일 뷰어 내 3개 페이지 전환
     function switchLivePage(pageKey) {
       const pageBtns = document.querySelectorAll('.page-switch-btn');
       const pages = {
         'page1': document.getElementById('livePage1'),
         'page2': document.getElementById('livePage2'),
-        'page3': document.getElementById('livePage3')
+        'page3': document.getElementById('livePage3'),
+        'page4': document.getElementById('livePage4')
       };
+      const frame = document.getElementById('mainViewerFrame');
 
       pageBtns.forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('onclick').includes(pageKey));
@@ -1219,12 +1123,18 @@ track.addEventListener('scroll', () => {
       Object.keys(pages).forEach(k => {
         pages[k].classList.toggle('active-page', k === pageKey);
       });
+
+      // 관리자 화면 선택 시 데스크톱 와이드 모드로 전환
+      if (pageKey === 'page4') {
+        frame.classList.add('desktop-mode');
+      } else {
+        frame.classList.remove('desktop-mode');
+      }
     }
 
-    // 12개 양초 생성 및 상태 갱신
+    // 양초 렌더링
     const candleContainer = document.getElementById('relayCandlesContainer');
-    const TOTAL_CANDLES = 12;
-    for (let i = 0; i < TOTAL_CANDLES; i++) {
+    for (let i = 0; i < 12; i++) {
       const c = document.createElement('div');
       c.className = 'candle';
       c.innerHTML = '<div class="flame"></div><div class="stick"></div>';
@@ -1235,55 +1145,99 @@ track.addEventListener('scroll', () => {
       const count = parseInt(val, 10);
       document.getElementById('simCountLabel').textContent = `${count}명`;
       document.getElementById('simCounterText').textContent = `지금까지 ${count}명이 함께했습니다`;
-
       const candles = candleContainer.querySelectorAll('.candle');
-      candles.forEach((c, idx) => {
-        c.classList.toggle('lit', idx < count);
-      });
+      candles.forEach((c, idx) => c.classList.toggle('lit', idx < count));
     }
     updateCandleSim(8);
 
-    // 마감 기한 강제 분기 시뮬레이션
     function toggleSimDeadline(isClosed) {
-      const form = document.getElementById('simPrayForm');
-      const closedNotice = document.getElementById('simClosedBox');
-      if (isClosed) {
-        form.style.display = 'none';
-        closedNotice.style.display = 'block';
-      } else {
-        form.style.display = 'block';
-        closedNotice.style.display = 'none';
-      }
+      document.getElementById('simPrayForm').style.display = isClosed ? 'none' : 'block';
+      document.getElementById('simClosedBox').style.display = isClosed ? 'block' : 'none';
     }
 
-    // 폼 글자 수 카운터
     function updateSimCharCount(val) {
       document.getElementById('simCharCount').textContent = `${val.length} / 200자`;
     }
 
-    // 폼 전송 시뮬레이션
     function handleSimSubmit(e) {
       e.preventDefault();
       const slider = document.getElementById('candleRange');
-      const currentVal = parseInt(slider.value, 10);
-      const nextVal = Math.min(currentVal + 1, 12);
-      
-      slider.value = nextVal;
-      updateCandleSim(nextVal);
-
+      slider.value = Math.min(parseInt(slider.value, 10) + 1, 12);
+      updateCandleSim(slider.value);
       alert('함께 마음을 모아주셔서 감사합니다! 촛불이 전달되었습니다.');
       document.getElementById('simPrayForm').reset();
       updateSimCharCount('');
     }
 
-    // 갤러리 도트 스크롤 동기화 (페이지 2 갤러리)
-    const track2 = document.getElementById('galleryTrack2');
-    const dots2 = document.getElementById('dotsContainer2').querySelectorAll('.dot');
-    track2.addEventListener('scroll', () => {
-      const itemWidth = track2.firstElementChild.getBoundingClientRect().width + 10;
-      const activeIdx = Math.round(track2.scrollLeft / itemWidth);
-      dots2.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
-    });
+    // 관리자 콘솔 목데이터 및 제어 로직
+    const ADMIN_PW = "Farah2015*";
+    let mockAdminData = [
+      { id: 'doc_1', name: '김동역', contact: '010-1234-5678', message: '헤브론 의료진 분들 항상 응원하고 기도합니다!', consent: true, marketingConsent: true, createdAt: '2026. 9. 21. 오후 2:30:15' },
+      { id: 'doc_2', name: '이지은', contact: '010-9876-5432', message: '작은 정성이지만 환아들에게 큰 힘이 되길 바랍니다.', consent: true, marketingConsent: false, createdAt: '2026. 9. 21. 오후 1:15:00' },
+      { id: 'doc_3', name: '박사랑', contact: '010-5555-7777', message: '프놈펜에 계신 모든 환우들의 쾌유를 빕니다.', consent: true, marketingConsent: true, createdAt: '2026. 9. 20. 오후 6:40:22' },
+      { id: 'doc_4', name: '최은혜', contact: '010-3333-2222', message: '따뜻한 사랑이 온전히 전해지길 소망합니다.', consent: true, marketingConsent: false, createdAt: '2026. 9. 20. 오전 11:05:40' }
+    ];
+
+    function handleDemoAdminLogin() {
+      const pw = document.getElementById('demoAdminPw').value;
+      const err = document.getElementById('demoAdminErr');
+      if (pw === ADMIN_PW) {
+        document.getElementById('demoAdminLogin').style.display = 'none';
+        document.getElementById('demoAdminDashboard').style.display = 'block';
+        renderAdminTable();
+      } else {
+        err.style.display = 'block';
+      }
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById('demoAdminTableBody');
+      document.getElementById('adminTotalCount').textContent = mockAdminData.length;
+      if (mockAdminData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:30px; color:#888;">접수된 내역이 없습니다.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = mockAdminData.map((item, idx) => `
+        <tr>
+          <td>${mockAdminData.length - idx}</td>
+          <td><strong>${item.name}</strong></td>
+          <td>${item.contact}</td>
+          <td style="max-width:200px; word-break:break-all;">${item.message}</td>
+          <td><span class="badge-stat ${item.consent ? 'agree' : 'disagree'}">${item.consent ? '동의' : '미동의'}</span></td>
+          <td><span class="badge-stat ${item.marketingConsent ? 'agree' : 'disagree'}">${item.marketingConsent ? '동의' : '미동의'}</span></td>
+          <td style="white-space:nowrap;">${item.createdAt}</td>
+          <td><button class="btn-del-sm" onclick="deleteDemoDoc('${item.id}')">삭제</button></td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteDemoDoc(id) {
+      if (!confirm('해당 접수 내역을 삭제하시겠습니까?')) return;
+      mockAdminData = mockAdminData.filter(d => d.id !== id);
+      renderAdminTable();
+    }
+
+    function deleteDemoAll() {
+      if (mockAdminData.length === 0) return alert('삭제할 데이터가 없습니다.');
+      if (prompt("전체 데이터를 영구 삭제하시려면 '일괄파기'를 입력하세요.") !== '일괄파기') return;
+      mockAdminData = [];
+      renderAdminTable();
+      alert('모든 접수 데이터가 일괄 파기되었습니다.');
+    }
+
+    function exportDemoCSV() {
+      if (mockAdminData.length === 0) return alert('내보낼 데이터가 없습니다.');
+      let csv = "\uFEFF이름,연락처,응원메시지,개인정보동의,마케팅동의,신청일시\n";
+      mockAdminData.forEach(item => {
+        csv += `"${item.name}","${item.contact}","${item.message}","${item.consent?'동의':'미동의'}","${item.marketingConsent?'동의':'미동의'}","${item.createdAt}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `캄보디아_기도릴레이_명단_${new Date().toISOString().slice(0,10)}.csv`;
+      link.click();
+    }
   </script>
 
 </body>
