@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>원은빛 | (주)자리컴퍼니 자리톡 CX 매니저 지원 포트폴리오</title>
-  <!-- 폰트 적용: Noto Sans KR, Noto Serif KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --teal-deep: #0E3B3D;
@@ -27,14 +25,12 @@
 
     * {
       box-sizing: border-box;
-      /* 우클릭 및 선택 차단 기본 설정 */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
-    /* 폼 입력창은 텍스트 선택 가능하도록 예외 처리 */
     input, textarea {
       -webkit-user-select: auto !important;
       -moz-user-select: auto !important;
@@ -53,7 +49,7 @@
       min-height: 100vh;
     }
 
-    /* 헤더 스타일 */
+    /* 포트폴리오 헤더 */
     .pf-header {
       background: #0D282A;
       color: #FFFFFF;
@@ -72,7 +68,6 @@
       font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      font-family: 'Noto Sans KR', sans-serif;
     }
     .pf-title-area p {
       margin: 0;
@@ -94,7 +89,7 @@
       font-weight: 700;
     }
 
-    /* 네비게이션 탭 */
+    /* 탭 컨트롤러 */
     .pf-tab-nav {
       background: #FFFFFF;
       border-bottom: 1px solid var(--border);
@@ -114,7 +109,6 @@
       position: relative;
       white-space: nowrap;
       transition: color 0.2s;
-      font-family: 'Noto Sans KR', sans-serif;
     }
     .pf-tab-btn:hover { color: var(--teal-deep); }
     .pf-tab-btn.active { color: var(--teal-deep); }
@@ -128,9 +122,8 @@
       background: var(--teal-deep);
     }
 
-    /* 본문 영역 */
     .pf-content-container {
-      max-width: 1200px;
+      max-width: 1300px;
       width: 100%;
       margin: 0 auto;
       padding: 32px;
@@ -139,7 +132,7 @@
     .pf-tab-pane { display: none; }
     .pf-tab-pane.active { display: block; }
 
-    /* 문서 섹션 디자인 */
+    /* 문서 공통 디자인 */
     .doc-section {
       background: #FFFFFF;
       border-radius: 12px;
@@ -160,36 +153,12 @@
       font-size: 16px;
       color: var(--teal-light);
       margin: 20px 0 10px 0;
-      font-family: 'Noto Sans KR', sans-serif;
     }
     .doc-section p {
       line-height: 1.7;
       color: #475569;
       margin: 0 0 16px 0;
       font-size: 14.5px;
-    }
-
-    /* 이미지 스타일 기반 매시지 박스 */
-    .message-box {
-      margin: 20px 0;
-      padding: 22px;
-      background-color: #FAF8F5;
-      border: 1px solid var(--gold);
-      border-radius: 14px;
-    }
-    .message-box .greeting {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 12px;
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-    .message-box p {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--text-main);
-      margin: 0 0 10px 0;
-      font-family: 'Noto Sans KR', sans-serif;
     }
 
     /* 지표 카드 그리드 */
@@ -219,7 +188,7 @@
       font-weight: 500;
     }
 
-    /* 테이블 스타일 */
+    /* 이력서 테이블 & 리스트 */
     .info-table {
       width: 100%;
       border-collapse: collapse;
@@ -263,18 +232,368 @@
       color: #334155;
     }
 
-    /* 시뮬레이터 레이아웃 */
-    .preview-layout { display: grid; grid-template-columns: 300px 1fr; gap: 24px; }
-    @media (max-width: 1024px) { .preview-layout { grid-template-columns: 1fr; } }
-    .preview-controller { background: #FFFFFF; border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
-    .page-switch-btn { width: 100%; text-align: left; padding: 10px; margin-bottom: 6px; background: #F8FAFC; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 12.5px; font-family: 'Noto Sans KR', sans-serif; }
-    .page-switch-btn.active { background: #E6F4F1; border-color: var(--teal-deep); color: var(--teal-deep); font-weight: 700; }
-    .mobile-viewer-wrap { display: flex; justify-content: center; background: #E2E8F0; padding: 20px; border-radius: 12px; min-height: 550px; }
-    .mobile-frame { width: 100%; max-width: 400px; background: #FFFFFF; border-radius: 16px; border: 6px solid #1E293B; overflow: hidden; display: flex; flex-direction: column; }
-    .mobile-frame.desktop-mode { max-width: 750px; }
-    .mobile-viewport { overflow-y: auto; flex: 1; max-height: 580px; background: #FFF; padding: 16px; }
-    .live-app-page { display: none; }
+    /* ============================================================
+       시뮬레이터 뷰어 컴포넌트 CSS (실무 리포트 스타일 통합)
+    ============================================================ */
+    .preview-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .preview-layout { grid-template-columns: 1fr; }
+    }
+
+    .preview-controller {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .preview-controller h3 {
+      margin: 0 0 16px 0;
+      font-size: 17px;
+      color: var(--teal-deep);
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 10px;
+    }
+    .ctrl-group { margin-bottom: 20px; }
+    .ctrl-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .page-switch-btn {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .page-switch-btn:hover { background: #EDF2F7; }
+    .page-switch-btn.active {
+      background: #E6F4F1;
+      border-color: var(--teal-deep);
+      color: var(--teal-deep);
+      font-weight: 700;
+    }
+
+    .mobile-viewer-wrap {
+      display: flex;
+      justify-content: center;
+      background: #E2E8F0;
+      padding: 30px 20px;
+      border-radius: 16px;
+      min-height: 820px;
+      transition: all 0.3s ease;
+    }
+    .mobile-frame {
+      width: 100%;
+      max-width: 460px;
+      background: #FFFFFF;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 8px solid #1E293B;
+      display: flex;
+      flex-direction: column;
+      transition: max-width 0.3s ease;
+    }
+    .mobile-frame.desktop-mode {
+      max-width: 900px;
+      border-radius: 16px;
+    }
+    .mobile-notch {
+      background: #1E293B;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mobile-notch-bar {
+      width: 60px;
+      height: 4px;
+      background: #475569;
+      border-radius: 2px;
+    }
+    .mobile-viewport {
+      overflow-y: auto;
+      flex: 1;
+      max-height: 760px;
+      background-color: var(--bg-sand);
+    }
+    .mobile-viewport::-webkit-scrollbar { width: 4px; }
+    .mobile-viewport::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
+
+    /* 임베디드 앱 페이지 공통 */
+    .live-app-page { display: none; background: #FFFFFF; min-height: 100%; position: relative; }
     .live-app-page.active-page { display: block; }
+    .live-app-page .header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-deeper) 100%);
+      padding: 36px 20px 28px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+    .live-app-page .badge {
+      display: inline-block;
+      background-color: var(--gold);
+      color: var(--teal-deeper);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .live-app-page h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+      color: #FFFFFF;
+      word-break: keep-all;
+    }
+
+    /* 1번 릴레이 페이지 */
+    .hero-relay {
+      background: radial-gradient(120% 140% at 50% -10%, #144d4f 0%, var(--teal-deep) 55%, var(--teal-deeper) 100%);
+      color: #ffffff;
+      padding: 40px 20px 28px;
+      text-align: center;
+    }
+    .hero-relay .eyebrow {
+      font-size: 12.5px;
+      letter-spacing: .12em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero-relay p {
+      font-size: 13.5px;
+      color: #DCEAE6;
+      margin: 12px auto 0;
+      line-height: 1.5;
+    }
+    .relay-row {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 20px 0 10px;
+      flex-wrap: wrap;
+    }
+    .candle { width: 16px; height: 28px; position: relative; opacity: .3; transition: opacity .4s ease; }
+    .candle.lit { opacity: 1; }
+    .candle .flame {
+      width: 8px;
+      height: 12px;
+      background: linear-gradient(180deg, #FFE49A, var(--gold) 60%, var(--gold-deep));
+      border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+      position: absolute;
+      left: 4px;
+      top: 0;
+      filter: drop-shadow(0 0 4px rgba(217, 164, 65, .8));
+      animation: flicker 2.4s ease-in-out infinite;
+    }
+    .candle:not(.lit) .flame { background: #3a4a49; filter: none; animation: none; }
+    .candle .stick { width: 4px; height: 14px; background: #EDE3C8; position: absolute; left: 6px; top: 11px; border-radius: 1px; }
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.08, 0.95) translateY(-1px); }
+    }
+    .counter { font-size: 13.5px; color: var(--gold); font-weight: 700; }
+    .relay-content { padding: 20px 18px 30px; }
+    .field { margin-bottom: 14px; }
+    .label { display: block; font-size: 12.5px; font-weight: 700; color: var(--teal-deep); margin-bottom: 5px; }
+    .input, .textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13.5px;
+      outline: none;
+    }
+    .input:focus, .textarea:focus { border-color: var(--teal-deep); }
+    .textarea { resize: vertical; min-height: 70px; }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F8F9FA;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--teal-deep);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    /* 감사 및 현장소식 리포트 카드 디자인 */
+    .message-box {
+      margin: 18px 18px 0 18px;
+      padding: 20px;
+      background-color: #FAF8F5;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+    }
+    .message-box .greeting { font-size: 16px; font-weight: 700; color: var(--teal-deep); margin-bottom: 8px; }
+    .message-box p { font-size: 13.5px; line-height: 1.6; color: var(--text-main); margin: 0 0 8px 0; word-break: keep-all; }
+    .message-box p:last-child { margin-bottom: 0; }
+    
+    .section-title { text-align: center; margin: 28px 0 14px 0; }
+    .section-title h2 { font-family: 'Noto Serif KR', serif; font-size: 17px; color: var(--teal-deep); margin: 0; font-weight: 700; }
+    
+    .video-wrapper {
+      margin: 0 18px 18px 18px;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    
+    .story-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin: 0 18px 14px 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+    .story-title { font-weight: 700; font-size: 15px; color: var(--teal-deep); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .story-card p { font-size: 13.5px; line-height: 1.6; color: var(--text-sub); margin: 0 0 8px 0; word-break: keep-all; }
+    .story-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--teal-light);
+      background-color: #E8F0F0;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    .gallery-container { position: relative; margin: 0 18px 18px 18px; }
+    .gallery-track {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 6px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-item {
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background-color: #E2E8F0;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-user-drag: none; }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(14, 59, 61, 0.88), transparent);
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 16px 10px 8px 10px;
+      text-align: center;
+    }
+    .gallery-dots { display: flex; justify-content: center; gap: 6px; margin-top: 8px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background-color: var(--border); transition: all 0.3s ease; }
+    .dot.active { background-color: var(--teal-deep); width: 18px; border-radius: 10px; }
+
+    .banner {
+      margin: 18px;
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-light) 100%);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+    }
+    .banner h3 { font-family: 'Noto Serif KR', serif; margin: 0 0 6px 0; font-size: 16.5px; color: var(--gold); }
+    .banner p { margin: 0 0 16px 0; font-size: 13px; color: #E2E8F0; }
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
+    .btn-primary {
+      display: block;
+      background-color: var(--gold);
+      color: var(--teal-deeper);
+      text-decoration: none;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 26px;
+      text-align: center;
+    }
+    .btn-outline {
+      display: block;
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      padding: 11px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border-radius: 26px;
+      text-align: center;
+    }
+    .live-app-page .footer {
+      background-color: #F8FAFC;
+      padding: 18px;
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+
+    /* 관리자 백오피스 데모 */
+    .admin-demo-wrap { background: #F8F9FA; padding: 20px; min-height: 600px; }
+    .admin-login-card {
+      max-width: 360px;
+      margin: 30px auto;
+      background: #FFFFFF;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .admin-login-card h2 { color: var(--teal-deep); margin: 0 0 14px 0; font-size: 18px; }
+    .admin-dashboard-panel { display: none; background: #FFFFFF; border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
+    .admin-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .admin-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn-admin { padding: 7px 12px; border-radius: 6px; border: none; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .btn-admin-excel { background: #107C41; color: #FFFFFF; }
+    .btn-admin-delete { background: var(--danger); color: #FFFFFF; }
+    .admin-data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .admin-data-table th, .admin-data-table td { padding: 8px 6px; text-align: left; border-bottom: 1px solid var(--border); }
+    .admin-data-table th { background: #F1F5F9; color: var(--teal-deep); font-weight: 700; white-space: nowrap; }
+    .badge-stat { display: inline-block; padding: 2px 5px; border-radius: 4px; font-size: 10.5px; font-weight: 700; }
+    .badge-stat.agree { background: #E8F5E9; color: var(--success); }
+    .badge-stat.disagree { background: #FFEBEE; color: var(--danger); }
+    .btn-del-sm { background: #FFFFFF; border: 1px solid var(--danger); color: var(--danger); padding: 2px 5px; border-radius: 4px; font-size: 10.5px; cursor: pointer; }
 
     .pf-main-footer {
       background: #0D282A;
@@ -286,9 +605,9 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
-  <!-- 상단 헤더 -->
+  <!-- 헤더 -->
   <header class="pf-header">
     <div class="pf-header-top">
       <div class="pf-title-area">
@@ -298,13 +617,13 @@
       <div class="pf-badge-group">
         <span class="pf-badge">CS/CX 매니저 3년+</span>
         <span class="pf-badge">CRM/CTI 연동</span>
-        <span class="pf-badge">VOC 구조화&개선</span>
+        <span class="pf-badge">VOC 구조화&amp;개선</span>
         <span class="pf-badge">응대 자동화(AI/챗봇)</span>
       </div>
     </div>
   </header>
 
-  <!-- 메인 탭 메뉴 (단일 메뉴 구성) -->
+  <!-- 메인 탭 네비게이션 -->
   <nav class="pf-tab-nav">
     <button class="pf-tab-btn active" onclick="switchPfTab(0)">📋 지원 요약 &amp; 역량 매칭</button>
     <button class="pf-tab-btn" onclick="switchPfTab(1)">📄 상세 이력서</button>
@@ -312,7 +631,7 @@
     <button class="pf-tab-btn" onclick="switchPfTab(3)">💻 [프로젝트 예시] 위드헤브론 뷰어</button>
   </nav>
 
-  <!-- 메인 컨텐츠 -->
+  <!-- 메인 컨테이너 -->
   <main class="pf-content-container">
 
     <!-- TAB 0: 지원 요약 & 역량 매칭 -->
@@ -440,207 +759,4 @@
 
         <div class="project-box">
           <h4>사회복지법인 월드비전 | 대리 / IT기획·PM</h4>
-          <div class="project-period">2021.04 - 2024.08</div>
-          <ul>
-            <li>위기아동지원사업 웹사이트 및 통합 Admin 구축 기획 및 PM (회원가입 성공률 +15%, 사이트 문의 -25%)</li>
-            <li>재물관리 전산화 및 인사/재무 ERP 연동 기획 (업무 처리 시간 -30%)</li>
-          </ul>
-        </div>
-
-        <div class="project-box">
-          <h4>사회복지법인 월드비전 | 대리 / 후원상담 CS매니저, CTI 시스템 관리자</h4>
-          <div class="project-period">2018.01 - 2021.03</div>
-          <ul>
-            <li>차세대 CRM/CTI 도입 Product Owner (Salesforce &amp; Genesys Cloud 연동, 과거 이력 100% 무중단 이관)</li>
-            <li>인바운드 및 웹채널 상담 응대, 정기 VOC 분석 및 이슈 패턴 정량 진단</li>
-            <li>채널별 표준 응대 가이드라인 수립, CTI IVR 시나리오 최적화 및 사용자 교육</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 2: CX 포트폴리오 -->
-    <div class="pf-tab-pane" id="tabPane2">
-      <div class="doc-section">
-        <h2>📁 핵심 프로젝트 1: 반복 문의를 구조로 해결 (웹사이트 &amp; Admin 구축)</h2>
-        <p><strong>기간:</strong> 2022.02 - 2022.08 | <strong>역할:</strong> 기획 PM</p>
-        <div class="project-box">
-          <h4>[문제 상황]</h4>
-          <p>기존 페이지의 가입/로그인 및 비밀번호 찾기 절차가 복잡하여 진입 단계에서 이탈이 발생하고, 콘텐츠 수정 및 데이터 확인마다 IT 요청 문의가 과다하게 인입됨.</p>
-          <h4>[해결 방안 및 주요 역할]</h4>
-          <ul>
-            <li>가입 이탈 구간 및 주요 문의 유형 정량 분석 → 사용자 페르소나 및 User Journey Map 기반 UX/UI 재설계</li>
-            <li>Salesforce API 연동 로직 및 필드 단위 데이터 매핑 정의 (기획과 개발 간의 정확한 요구사항 전달)</li>
-            <li>Admin 기능별 권한 및 운영 시나리오 정의, 현업 대상 매뉴얼 제작 및 교육 수행</li>
-          </ul>
-          <h4>[정량적 성과]</h4>
-          <ul>
-            <li><strong>회원가입 성공률 +15% 상승</strong></li>
-            <li><strong>사이트 이용 문의 -25% 감축</strong></li>
-            <li><strong>현업 IT 단순 요청 건수 -15% 감축</strong></li>
-          </ul>
-        </div>
-
-        <h2>📁 핵심 프로젝트 2: CX 운영 체계 구축 및 단순 문의 자동화 (차세대 CRM/CTI 도입)</h2>
-        <p><strong>기간:</strong> 2019.09 - 2020.05 | <strong>역할:</strong> Product Owner</p>
-        <div class="project-box">
-          <h4>[문제 상황]</h4>
-          <p>CRM과 CTI 미연동으로 인해 상담 기록을 수기로 이중 작성하여 처리 지연이 발생하고, 홈페이지 변경 정보가 익일 수기 반영되어 동일 문의가 반복 인입됨.</p>
-          <h4>[해결 방안 및 주요 역할]</h4>
-          <ul>
-            <li>콜 인입부터 종료까지의 데이터 흐름 분석 및 상담원 업무 병목 정량 진단</li>
-            <li>Service Cloud 360° 상담원 통합 화면 및 Genesys Cloud IVR 분기 시나리오 설계</li>
-            <li>홈페이지-CRM 정보 변경 자동화 연동 설계로 단순 문의 인입 분산</li>
-            <li>과거 상담 이력 100% 무중단 데이터 이관 계획 수립 및 총괄 실행</li>
-          </ul>
-          <h4>[정량적 성과]</h4>
-          <ul>
-            <li><strong>고객 정보 파악 시간 -40% 단축</strong></li>
-            <li><strong>상담원 1인 일평균 업무시간 약 30분 확보</strong></li>
-            <li><strong>전환 중 상담 공백 0건 (무중단 이관 성공)</strong></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 3: 프로젝트 예시 시뮬레이터 -->
-    <div class="pf-tab-pane" id="tabPane3">
-      <div class="doc-section">
-        <h2>💻 [프로젝트 예시] 위드헤브론 모바일 캠페인 &amp; 백오피스 시스템</h2>
-        <p>지원자가 직접 기획/제작한 모바일 랜딩페이지 및 관리자 백오피스 인터랙티브 시뮬레이터입니다.</p>
-        
-        <div class="preview-layout">
-          <aside class="preview-controller">
-            <span style="font-weight:bold; font-size:13px; display:block; margin-bottom:10px;">화면 전환 테스트</span>
-            <button class="page-switch-btn active" onclick="switchLivePage('page1')">1. 1분 기도 &amp; 응원 릴레이 (참여 폼)</button>
-            <button class="page-switch-btn" onclick="switchLivePage('page2')">2. 감사 리포트 (후원 피드백)</button>
-            <button class="page-switch-btn" onclick="switchLivePage('page3')">3. 현장 소식 리포트 (연차보고서)</button>
-            <button class="page-switch-btn" onclick="switchLivePage('page4')">4. 관리자 콘솔 (인라인 인증 &amp; CSV)</button>
-            
-            <div style="margin-top:15px; padding:10px; background:#F1F5F9; border-radius:6px; font-size:11px; color:#475569;">
-              🔑 관리자 데모 비밀번호: <code>Qwer1234!@#$</code>
-            </div>
-          </aside>
-
-          <div class="mobile-viewer-wrap">
-            <div class="mobile-frame" id="mainViewerFrame">
-              <div class="mobile-viewport">
-                
-                <!-- Page 1 -->
-                <div class="live-app-page active-page" id="livePage1">
-                  <h3 style="color:var(--teal-deep); text-align:center;">1분 기도 &amp; 응원 릴레이</h3>
-                  <p style="font-size:12px; text-align:center;">1분 간 기도로 응원에 참여해 주세요.</p>
-                  <form onsubmit="alert('참여해주셔서 감사합니다!'); return false;">
-                    <input type="text" placeholder="이름" required style="width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:4px;">
-                    <input type="tel" placeholder="연락처" required style="width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:4px;">
-                    <textarea placeholder="응원 메시지" style="width:100%; padding:8px; margin-bottom:8px; border:1px solid #ccc; border-radius:4px;"></textarea>
-                    <button type="submit" style="width:100%; padding:10px; background:var(--teal-deep); color:#fff; border:none; border-radius:4px; font-weight:bold;">릴레이 참여하기 🕯️</button>
-                  </form>
-                </div>
-
-                <!-- Page 2 -->
-                <div class="live-app-page" id="livePage2">
-                  <div class="message-box">
-                    <div class="greeting">안녕하세요 🏥</div>
-                    <p>남겨주신 따뜻한 기도와 응원이 캄보디아 현장의 환우와 의료진에게 전달되어 큰 위로와 소망이 되었습니다. 💖</p>
-                    <p>후원자님의 따뜻한 나눔으로 건강을 되찾은 아이들과, 그 사랑을 현장에서 이어가고 있는 의료진이 감사의 인사를 전해왔습니다.</p>
-                    <p>캄보디아에서 전해온 진심 어린 이야기를 함께 나눠 보아요. 💌</p>
-                  </div>
-                </div>
-
-                <!-- Page 3 -->
-                <div class="live-app-page" id="livePage3">
-                  <h3 style="color:var(--teal-deep); text-align:center;">현장 소식 리포트 🏥</h3>
-                  <p style="font-size:12px;">사단법인 위드헤브론의 보건의료지원 사역 보고서입니다.</p>
-                </div>
-
-                <!-- Page 4 -->
-                <div class="live-app-page" id="livePage4">
-                  <h3 style="color:var(--teal-deep); text-align:center;">백오피스 관리자 콘솔</h3>
-                  <p style="font-size:12px; text-align:center;">비밀번호 입력 시 접수 내역 조회 및 CSV 다운로드가 가능합니다.</p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <footer class="pf-main-footer">
-    <p>포트폴리오 제작: 원은빛 (Won Eun-bit) | (주)자리컴퍼니 자리톡 CX 매니저 지원</p>
-    <p style="font-size:11px; margin-top:4px;">Contact: 010-8829-7492 | 7710hk@gmail.com</p>
-  </footer>
-
-  <!-- 우클릭 및 불법 복제 차단 보안 스크립트 -->
-  <script>
-    // 1. 우클릭 메뉴 방지
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      return false;
-    });
-
-    // 2. 드래그 방지
-    document.addEventListener('dragstart', function(e) {
-      e.preventDefault();
-      return false;
-    });
-
-    // 3. 텍스트 드래그 및 선택 방지 (입력창 예외)
-    document.addEventListener('selectstart', function(e) {
-      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return true;
-      e.preventDefault();
-      return false;
-    });
-
-    // 4. 주요 개발자 도구 단축키 및 저장/소스보기 단축키 차단
-    document.addEventListener('keydown', function(e) {
-      // F12 차단
-      if (e.key === 'F12') { e.preventDefault(); return false; }
-      // Ctrl+U (소스 보기) 차단
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') { e.preventDefault(); return false; }
-      // Ctrl+Shift+I / J / C (개발자 도구) 차단
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) { e.preventDefault(); return false; }
-      // Ctrl+S (페이지 저장) 차단
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); return false; }
-    });
-
-    // 탭 전환 핸들러
-    function switchPfTab(tabIndex) {
-      const btns = document.querySelectorAll('.pf-tab-btn');
-      const panes = document.querySelectorAll('.pf-tab-pane');
-      btns.forEach((b, i) => b.classList.toggle('active', i === tabIndex));
-      panes.forEach((p, i) => p.classList.toggle('active', i === tabIndex));
-    }
-
-    // 시뮬레이터 화면 전환 핸들러
-    function switchLivePage(pageKey) {
-      const pageBtns = document.querySelectorAll('.page-switch-btn');
-      const pages = {
-        'page1': document.getElementById('livePage1'),
-        'page2': document.getElementById('livePage2'),
-        'page3': document.getElementById('livePage3'),
-        'page4': document.getElementById('livePage4')
-      };
-      const frame = document.getElementById('mainViewerFrame');
-
-      pageBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('onclick').includes(pageKey));
-      });
-
-      Object.keys(pages).forEach(k => {
-        if(pages[k]) pages[k].classList.toggle('active-page', k === pageKey);
-      });
-
-      if (pageKey === 'page4') {
-        frame.classList.add('desktop-mode');
-      } else {
-        frame.classList.remove('desktop-mode');
-      }
-    }
-  </script>
-
-</body>
-</html>
+          <div class="project-period">2021.
